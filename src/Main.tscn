@@ -29,7 +29,6 @@ scale = Vector2( 6.6994, 6.30444 )
 
 [node name="experienceGem" parent="lootBase" instance=ExtResource( 11 )]
 position = Vector2( 1149, 762 )
-experience = 0
 speed = 10
 speedMultiplier = 0
 

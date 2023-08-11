@@ -47,8 +47,11 @@ var collectedExperience = 0
 var homingBulletUnlocked = false
 var explosiveBulletUnlocked = false
 
-#Directional Ship Shooting
+#turret
 onready var turretSprite = $turret
+
+
+#Directional Ship Shooting
 onready var directionalShootSound = $sounds/directionalShootSound
 var directionalBullet = preload("res://Scenes/directionalBullet.tscn")
 var waitToFire = false
@@ -211,12 +214,15 @@ func _on_HurtBox_hurt(damage):
 		hurtBox.call_deferred("set", "disabled", true)
 		shipSprite.visible = false
 		turretSprite.visible = false
+		toggleFire = false
+		turretSprite.toggleFire = false
 		speed = 0
 		deathSound.play()
 	elif playerHealth > 0:
 		spriteDamageFlicker(.2)
 
 func _on_deathSound_finished():
+	
 	yield(get_tree().create_timer(1), "timeout")
 	get_tree().change_scene("res://Scenes/Menus/GameOverScreen.tscn")
 

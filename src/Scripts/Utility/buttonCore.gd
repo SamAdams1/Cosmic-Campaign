@@ -29,7 +29,6 @@ func _ready():
 		self.get('custom_styles/hover/bg_color').bg_color = hoverColor3
 
 func _process(_delta):
-	
 	if buttonName != Global.selectedButton and !buttonUnlocked and cost == 1:
 		self.get('custom_styles/normal/bg_color').bg_color = normalColor
 	elif buttonName != Global.selectedButton and !buttonUnlocked and cost == 2:

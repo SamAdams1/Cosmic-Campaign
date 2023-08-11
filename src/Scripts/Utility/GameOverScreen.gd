@@ -7,6 +7,8 @@ onready var music = $music
 
 func _ready():
 	music.play()
+	Global.unlockedSkills = ['first', ]
+	Global.selectedButton = null
 
 func _on_NewGameButton_pressed():
 	get_tree().change_scene(mainGameScene.resource_path)

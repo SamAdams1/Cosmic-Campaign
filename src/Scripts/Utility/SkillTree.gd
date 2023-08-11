@@ -322,7 +322,7 @@ func checkTotalCost():
 	for prereq in SKILLS[target]["prerequiste"]:
 		if !Global.unlockedSkills.has(prereq):
 			cost += SKILLS[prereq]["cost"]
-	print(cost)
+#	print(cost)
 	return cost <= points
 
 func stopStatUpgrades():
