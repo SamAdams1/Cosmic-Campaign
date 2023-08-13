@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Utility/enemySpawner.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Enemies/enemy_asteroid_4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemies/enemy_asteroid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/enemy_asteroid_2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/enemy_asteroid_3.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -104, -157, 0, 0, 0, 0, 521.861, -205.484, 0, 0, 0, 0, 1220.53, -156.582, 0, 0, 0, 0, 1318.37, 304.003, 0, 0, 0, 0, 1223, 764, 0, 0, 0, 0, 520.371, 817.13, 0, 0, 0, 0, -221, 756, 0, 0, 0, 0, -284.333, 301.092, 0, 0, 0, 0, -206, -158, 0, 0, 0, 0, -104, -157 )
+}
+
+[node name="EnemySpawner" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ) ]
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 12.6059, 59.3208 )
+scale = Vector2( 1.34211, 1.37393 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -104, -157 )
+rotation = -0.0773095
+
+[node name="Position2D" type="Position2D" parent="Path2D/PathFollow2D"]
+position = Vector2( -1.52588e-05, 0 )
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawnTimer_timeout"]

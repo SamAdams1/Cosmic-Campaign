@@ -22,8 +22,5 @@ visible = true
 [node name="HurtBox" parent="." index="2"]
 visible = true
 
-[node name="HitBox" parent="." index="3"]
-visible = true
-
 [editable path="HurtBox"]
 [editable path="HitBox"]

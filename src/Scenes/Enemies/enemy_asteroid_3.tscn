@@ -18,17 +18,8 @@ texture = ExtResource( 3 )
 [node name="PlayerCollision" parent="." index="1"]
 visible = true
 
-[node name="HitBox" parent="." index="3"]
-visible = true
-
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( -0.25, -0.5 )
-
-[node name="BulletCollision" parent="." index="4"]
-visible = false
-
-[node name="BulletCollisionArea" parent="." index="5"]
-visible = false
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

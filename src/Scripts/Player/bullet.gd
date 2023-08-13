@@ -42,7 +42,7 @@ func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):
 		sprite.visible = false
 		if explosiveBulletUnlocked:
-			hitBox.scale = Vector2(10,15)
+			hitBox.scale = Vector2(5,5)
 			var explosion_instance = explosion.instance()
 			explosion_instance.scale = Vector2(2,2)
 			explosion_instance.position = get_global_position()

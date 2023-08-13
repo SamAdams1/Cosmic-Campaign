@@ -264,7 +264,11 @@ func calculateExperience(gemEXP):
 		experienceLevel += 1
 		experience = 0
 		expRequired = calculateExperienceCap()
-		
+		skillTree.points += 1
+		statUpgrade.statPoints += 1
+		labelLevel.text = str("LEVEL: ", experienceLevel)
+		statUpgrade.updatePoints()
+		skillTree.updatePoints()
 	else:
 		experience += collectedExperience
 		collectedExperience = 0
@@ -289,11 +293,7 @@ func setExpBar(setValue = 1, setMaxValue = 100):
 signal firstLevel
 
 func _on_levelUpSound_finished():
-	labelLevel.text = str("LEVEL: ", experienceLevel)
-	skillTree.points += 1
-	statUpgrade.statPoints += 1
-	statUpgrade.updatePoints()
-	skillTree.updatePoints()
+	
 	toggleFire = false
 	
 	if experienceLevel % 2 != 0 or experienceLevel == 1:

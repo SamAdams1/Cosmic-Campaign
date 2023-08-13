@@ -83,14 +83,15 @@ __meta__ = {
 }
 
 [node name="shipMovingFlames" type="Sprite" parent="ship"]
-position = Vector2( 42.1396, -6.88295 )
+position = Vector2( 38.628, -6.88295 )
 texture = ExtResource( 17 )
-offset = Vector2( -51.5, -180.5 )
+offset = Vector2( -50, -175.5 )
 
 [node name="shipBoostFlames" type="Sprite" parent="ship"]
-position = Vector2( -129.93, -6.88296 )
+visible = false
+position = Vector2( -131.535, -3.72662 )
 texture = ExtResource( 24 )
-offset = Vector2( 0.5, 3 )
+offset = Vector2( -0.75, 4.75 )
 
 [node name="bulletSpawnPoints" type="Node2D" parent="ship"]
 position = Vector2( -52.6745, -172.074 )
@@ -104,6 +105,9 @@ position = Vector2( 71.5101, 32.2176 )
 
 [node name="directional3" type="Position2D" parent="ship/bulletSpawnPoints"]
 position = Vector2( 18.4304, 61.8051 )
+
+[node name="enemySpawnPosition" type="Position2D" parent="ship"]
+position = Vector2( 3606.45, -3.11981e-07 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

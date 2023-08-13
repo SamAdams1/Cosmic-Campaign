@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Enemies/enemy_asteroid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Objects/Earth.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Objects/Moon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Utility/Background.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Utility/EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Audio/Music/let-the-games-begin-21858.wav" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/Objects/experienceGem.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/loot_drops/Store.tscn" type="PackedScene" id=15]
@@ -15,12 +16,15 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1152, 761 )
 
+[node name="EnemySpawner" parent="Player" instance=ExtResource( 6 )]
+position = Vector2( -711.416, -460.908 )
+
 [node name="Earth" parent="." groups=["objects"] instance=ExtResource( 3 )]
-position = Vector2( 2235, 1343 )
+position = Vector2( 2951, 1505 )
 scale = Vector2( 10.955, 10.6051 )
 
 [node name="Moon" parent="." groups=["objects"] instance=ExtResource( 4 )]
-position = Vector2( -100, 106 )
+position = Vector2( -331, -118 )
 scale = Vector2( 6.6994, 6.30444 )
 
 [node name="Background" parent="." instance=ExtResource( 5 )]
@@ -29,12 +33,15 @@ scale = Vector2( 6.6994, 6.30444 )
 
 [node name="experienceGem" parent="lootBase" instance=ExtResource( 11 )]
 position = Vector2( 1149, 762 )
+experience = 0
 speed = 10
 speedMultiplier = 0
 
 [node name="coin" parent="lootBase" instance=ExtResource( 16 )]
 position = Vector2( 1143, 761 )
-coinValue = 100
+coinValue = 500
+
+[node name="enemyHolder" type="Node2D" parent="."]
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -42,8 +49,8 @@ volume_db = -15.0
 bus = "Music"
 
 [node name="Store" parent="." instance=ExtResource( 15 )]
-position = Vector2( 1636, 659 )
+position = Vector2( 1561, 1056 )
 z_index = -1
 
-[node name="enemy_asteroid_3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 544, 382 )
+[node name="enemy_base" parent="." instance=ExtResource( 2 )]
+position = Vector2( -253, 690 )

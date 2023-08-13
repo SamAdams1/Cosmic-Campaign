@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "enemySpawnInfo",
+"language": "GDScript",
+"path": "res://Scripts/Utility/enemySpawnInfo.gd"
+} ]
+_global_script_class_icons={
+"enemySpawnInfo": ""
+}
+
 [application]
 
 config/name="Solo TechWise Project"

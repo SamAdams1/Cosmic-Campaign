@@ -29,13 +29,15 @@ export var healthDroppedValue = 5
 var knockback = Global.knockback
 var knockbackUnlocked = Global.knockbackUnlocked
 
+var playerPush = 1
+
 func _ready():
 	statUpgrade.connect('setKnockBack', self, 'setEnemyKnockback')
-#	health += Global.enemyHealth
+	health += Global.enemyHealthAdded
 
 func basic_movement_towards_player(_delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * movementSpeed
+	velocity = direction * movementSpeed * playerPush
 	move_and_slide(velocity)
 
 
@@ -78,13 +80,13 @@ func createLoot():
 #		healing.global_position = global_position
 #		lootBase.call_deferred("add_child", healing)
 		
-	if spawnChance > 5:
+	if spawnChance > 7:
 		var newXPGem = xpGem.instance()
 		newXPGem.experience = experienceDroppedValue
 		newXPGem.global_position = global_position
 		lootBase.call_deferred("add_child", newXPGem)
 		
-	elif spawnChance < 4:
+	elif spawnChance < 3:
 		var newCoin = coin.instance()
 		newCoin.coinValue = coinDroppedValue
 		newCoin.global_position = global_position
@@ -98,3 +100,5 @@ func setEnemyKnockback():
 	knockback = Global.knockback
 	knockbackUnlocked = true
 	Global.knockbackUnlocked = true
+
+

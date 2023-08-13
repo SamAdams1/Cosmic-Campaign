@@ -26,8 +26,7 @@ pause_mode = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
-movementSpeed = 300.0
-health = 3
+movementSpeed = 150.0
 healthDroppedValue = 1
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -46,14 +45,12 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="DisableTimer" parent="HurtBox" index="1"]
 wait_time = 0.1
 
 [node name="HitBox" parent="." instance=ExtResource( 4 )]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -61,6 +58,7 @@ collision_mask = 2
 shape = SubResource( 3 )
 
 [node name="BulletCollision" type="StaticBody2D" parent="." groups=["enemy"]]
+visible = false
 collision_layer = 4
 collision_mask = 4
 
@@ -68,6 +66,7 @@ collision_mask = 4
 shape = SubResource( 5 )
 
 [node name="BulletCollisionArea" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 position = Vector2( -210, -32 )
 collision_layer = 0
 collision_mask = 4
@@ -93,7 +92,6 @@ autostart = true
 [connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
 [connection signal="finished" from="DeathExplosionSound" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="timeout" from="stun_timer" to="." method="_on_stun_timer_timeout"]
-[connection signal="timeout" from="difficulty_scale" to="." method="_on_difficulty_scale_timeout"]
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

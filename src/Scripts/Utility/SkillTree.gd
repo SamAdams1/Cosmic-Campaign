@@ -184,8 +184,6 @@ func _physics_process(_delta):
 func _ready():
 	if str(get_tree().current_scene).get_slice(":", 0) == 'Main':
 		player.connect('firstLevel', self, 'hideOther')
-	if points > 1:
-		exitLabel.text  = 'Exit and Save Points'
 
 	pointLabel.text = 'x' + str(points)
 	
@@ -262,7 +260,8 @@ func unlockSkill(upgrade):
 	emit_signal("changeBranchColor", upgrade)
 	pointLabel.text = 'x' + str(points)
 	if points <= 0:
-		exitLabel.text = 'Exit'
+		yield(get_tree().create_timer(0.25), "timeout")
+		self.visible = false
 	setTurret()
 
 func setTurret():
