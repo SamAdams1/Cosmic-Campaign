@@ -81,6 +81,8 @@ onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
+#	skillTree.points += 20
+#	statUpgrade.statPoints += 30
 	
 	labelLevel.text = "Level: " + str(experienceLevel)
 	skillTree.visible = false
@@ -265,7 +267,7 @@ func calculateExperience(gemEXP):
 		experience = 0
 		expRequired = calculateExperienceCap()
 		skillTree.points += 1
-		statUpgrade.statPoints += 1
+		statUpgrade.statPoints += 2
 		labelLevel.text = str("LEVEL: ", experienceLevel)
 		statUpgrade.updatePoints()
 		skillTree.updatePoints()

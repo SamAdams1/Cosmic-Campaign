@@ -228,11 +228,11 @@ func _on_selectSkillButton_pressed():
 
 
 func pointLabelBlink():
-	for i in range(0,2):
-			pointLabel.self_modulate = Color(0.984314, 0.043137, 0.043137)
-			yield(get_tree().create_timer(0.3), "timeout")
-			pointLabel.self_modulate = Color(1, 1, 1)
-			yield(get_tree().create_timer(0.3), "timeout")
+	for _i in range(0,2):
+		pointLabel.self_modulate = Color(0.984314, 0.043137, 0.043137)
+		yield(get_tree().create_timer(0.3), "timeout")
+		pointLabel.self_modulate = Color(1, 1, 1)
+		yield(get_tree().create_timer(0.3), "timeout")
 
 func targetNotUnlocked():
 	for skill in Global.unlockedSkills:

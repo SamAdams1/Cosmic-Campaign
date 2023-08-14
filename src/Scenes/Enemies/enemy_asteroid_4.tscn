@@ -16,6 +16,7 @@ radius = 317.057
 script = ExtResource( 2 )
 movementSpeed = 200.0
 health = 1
+coinDroppedValue = 5
 healthDroppedValue = 3
 
 [node name="Sprite" parent="." index="0"]
@@ -34,17 +35,10 @@ position = Vector2( 9.53674e-07, 2.03252 )
 texture = ExtResource( 4 )
 
 [node name="PlayerCollision" parent="." index="1"]
-visible = true
 position = Vector2( 1.5, 7.5 )
 
-[node name="HurtBox" parent="." index="2"]
-visible = true
-
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-visible = true
-
 [node name="HitBox" parent="." index="3"]
-visible = true
+visible = false
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( 1.5, 7.5 )
@@ -54,11 +48,9 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AvoidBox" index="0"]
+visible = false
 position = Vector2( 2, -1 )
 shape = SubResource( 1 )
-
-[node name="BulletCollision" parent="." index="5"]
-visible = false
 
 [node name="CollisionShape2D" parent="BulletCollision" index="0"]
 visible = false
@@ -68,10 +60,8 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreat_box" index="0"]
-shape = SubResource( 2 )
-
-[node name="BulletCollisionArea" parent="." index="7"]
 visible = false
+shape = SubResource( 2 )
 
 [connection signal="area_entered" from="AvoidBox" to="." method="_on_AvoidBox_area_entered"]
 [connection signal="area_exited" from="AvoidBox" to="." method="_on_AvoidBox_area_exited"]

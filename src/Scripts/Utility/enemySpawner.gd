@@ -18,30 +18,34 @@ onready var timer = Global.timer
 
 var difficultyChanges = {
 	510: {
-		'enemyHealth': 3,
-		'spawnTime': 1.5,
-		'indexes': [0],
+		'enemyHealth': 4,
+		'spawnTime': 1,
+		'indexes': [0, 1],
 	},
 	420: {
 		'enemyHealth': 3,
-		'spawnTime': .2,
-		'indexes': [0, 1],
+		'spawnTime': .5,
+		'indexes': [1, 2],
 	},
 	330: {
 		'enemyHealth': 6,
-		'spawnTime': 1,
+		'spawnTime': .7,
+		'indexes': [2,3],
 	},
 	240: {
 		'enemyHealth': 9,
 		'spawnTime': .5,
+		'indexes': [3,4],
 	},
 	150: {
 		'enemyHealth': 12,
-		'spawnTime': 1.5,
+		'spawnTime': .5,
+		'indexes': [4,5],
 	},
 	75: {
 		'enemyHealth': 15,
-		'spawnTime': 1,
+		'spawnTime': .2,
+		'indexes': [1,2,3,4,5],
 	},
 }
 #[510, 420, 330, 240, 150, 75]
@@ -68,6 +72,7 @@ func spawnEnemy():
 func enemySpawnList():
 	var enemyList = []
 	for num in indexes:
+		print(num)
 		enemyList.append(enemies[num])
 	print(enemyList)
 	return enemyList

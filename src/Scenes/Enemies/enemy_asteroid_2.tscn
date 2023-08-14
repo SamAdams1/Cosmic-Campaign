@@ -8,7 +8,6 @@
 physics_interpolation_mode = 1
 script = ExtResource( 3 )
 movementSpeed = 100.0
-health = 2
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]
@@ -16,11 +15,8 @@ position = Vector2( 1, -11 )
 scale = Vector2( 0.252, 0.268 )
 texture = ExtResource( 2 )
 
-[node name="PlayerCollision" parent="." index="1"]
-visible = true
-
-[node name="HurtBox" parent="." index="2"]
-visible = true
+[node name="HitBox" parent="." index="3"]
+visible = false
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

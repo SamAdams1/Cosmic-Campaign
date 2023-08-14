@@ -80,13 +80,13 @@ func createLoot():
 #		healing.global_position = global_position
 #		lootBase.call_deferred("add_child", healing)
 		
-	if spawnChance > 7:
+	if spawnChance > 3:
 		var newXPGem = xpGem.instance()
 		newXPGem.experience = experienceDroppedValue
 		newXPGem.global_position = global_position
 		lootBase.call_deferred("add_child", newXPGem)
 		
-	elif spawnChance < 3:
+	elif spawnChance < 2:
 		var newCoin = coin.instance()
 		newCoin.coinValue = coinDroppedValue
 		newCoin.global_position = global_position
