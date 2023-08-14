@@ -23,9 +23,9 @@ var boostCapacity = 2
 var boostValue = 100
 
 #skills
-var unlockedSkills = ['first', ]
+#var unlockedSkills = ['first', ]
 #var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Direction']
-#var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
+var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
 #var unlockedSkills = ['first',  'turret', '2direction', '3direction', '4direction']
 
 var selectedButton = null

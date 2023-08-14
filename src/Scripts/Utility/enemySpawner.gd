@@ -6,13 +6,12 @@ export (Array, PackedScene) var enemies
 
 onready var indexes = [0]
  
-onready var player = get_tree().current_scene.get_node('Player')
+
 onready var enemyHolder = get_tree().current_scene.get_node('enemyHolder')
 onready var spawnPosition = $Path2D/PathFollow2D/Position2D
 onready var spawnPath = $Path2D/PathFollow2D
 onready var spawnTimer = $spawnTimer
 
-onready var playerLookSpawnPoint = player.get_node('ship/enemySpawnPosition')
 
 onready var timer = Global.timer
 
@@ -61,7 +60,7 @@ func _physics_process(delta):
 
 func _on_spawnTimer_timeout():
 	spawnEnemy()
-	print(int(timer))
+#	print(int(timer))
 
 func spawnEnemy():
 	for enemy in enemySpawnList():
@@ -72,53 +71,21 @@ func spawnEnemy():
 func enemySpawnList():
 	var enemyList = []
 	for num in indexes:
-		print(num)
+#		print(num)
 		enemyList.append(enemies[num])
-	print(enemyList)
+#	print(enemyList)
 	return enemyList
-
 
 
 func changeDifficulty():
 	Global.enemyHealthAdded = difficultyChanges[time]['enemyHealth']
 	spawnTimer.wait_time = difficultyChanges[time]['spawnTime']
 	indexes = difficultyChanges[time]['indexes']
-	print(Global.enemyHealthAdded, '  |  ', spawnTimer.wait_time, '  |  ', indexes)
-
+#	print(Global.enemyHealthAdded, '  |  ', spawnTimer.wait_time, '  |  ', indexes)
 
 
 
 func getRandomPosition():
-	var rng = RandomNumberGenerator.new().randomize()
+#	var rng = RandomNumberGenerator.new().randomize()
 	spawnPath.offset = rand_range(0, 5000)
 	return spawnPosition.global_position
-	
-	
-#	var viewPort = get_viewport_rect().size * 6
-#	var topLeft = Vector2(player.global_position.x - viewPort.x / 2, player.global_position.y - viewPort.y /2)
-#	var topRight = Vector2(player.global_position.x + viewPort.x / 2, player.global_position.y - viewPort.y /2)
-#	var bottomLeft = Vector2(player.global_position.x - viewPort.x / 2, player.global_position.y + viewPort.y /2)
-#	var bottomRight = Vector2(player.global_position.x + viewPort.x / 2, player.global_position.y + viewPort.y /2)
-#	var posSide = side[rand_range(0, 4)]
-#	var spawnPos1 = Vector2.ZERO
-#	var spawnPos2 = Vector2.ZERO
-#
-#	match posSide:
-#		'up':
-#			spawnPos1 = topLeft
-#			spawnPos2 = topRight
-#		'down':
-#			spawnPos1 = bottomLeft
-#			spawnPos2 = bottomRight
-#		'right':
-#			spawnPos1 = topRight
-#			spawnPos2 = bottomRight
-#		'left':
-#			spawnPos1 = topLeft
-#			spawnPos2 = bottomRight
-#
-#	var xSpawn = rand_range(spawnPos1.x, spawnPos2.x)
-#	var ySpawn = rand_range(spawnPos1.y, spawnPos2.y)
-#	return Vector2(xSpawn, ySpawn)
-
-	

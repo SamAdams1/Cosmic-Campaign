@@ -21,7 +21,7 @@ onready var statUpgrade = get_tree().get_root().find_node('StatUpgrade', true, f
 
 var velocity = Vector2.ZERO
 #enemy stats you can change in inspector
-export var movementSpeed = 100.0
+export var movementSpeed = 100
 export var health = 2
 export var experienceDroppedValue = 1
 export var coinDroppedValue = 1
@@ -59,8 +59,6 @@ func _on_HurtBox_hurt(damage):
 			get_tree().get_root().add_child(explosion_instance)
 			
 			createLoot()
-			
-
 
 func disableEnemyOnDead():
 	playerCollision.call_deferred("set", "disabled", true)
@@ -91,10 +89,6 @@ func createLoot():
 		newCoin.coinValue = coinDroppedValue
 		newCoin.global_position = global_position
 		lootBase.call_deferred("add_child", newCoin)
-		
-func _on_difficulty_scale_timeout():
-	health += 1
-	movementSpeed += 10
 
 func setEnemyKnockback():
 	knockback = Global.knockback

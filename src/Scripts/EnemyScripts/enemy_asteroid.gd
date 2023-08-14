@@ -1,10 +1,13 @@
 extends "res://Scripts/EnemyScripts/enemy_core.gd"
 
 var stun = false
+var pushValue = movementSpeed / 2
+onready var inFront = $inFront
 
 func _process(delta):
 	if stun == false:
 		basic_movement_towards_player(delta)
+		inFront.look_at(player.global_position)
 	
 #	elif stun:
 #		var direction = global_position.direction_to(player.global_position)
@@ -25,13 +28,16 @@ func _on_HurtBox_area_entered(area):
 		stun = true
 		$stun_timer.start()
 
-func _on_dificulty_scale_timeout():
-	health += 1
+var enemyPushList = []
 
-#func _on_HitBox_body_entered(body):
-#	if body.is_in_group('player'):
-#		playerPush = -1
-#
-#func _on_HitBox_body_exited(body):
-#	if body.is_in_group('player'):
-#		playerPush = 1
+func _on_enemyPush_area_entered(area):
+	if area.is_in_group('enemyPush') and movementSpeed > area.get_parent().get_parent().movementSpeed:
+		area.get_parent().get_parent().movementSpeed += pushValue
+		enemyPushList.append(area)
+#		print('speed', ' | ', enemyPushList)
+
+
+func _on_enemyPush_area_exited(area):
+	if area.is_in_group('enemyPush') and enemyPushList.has(area):
+		area.get_parent().get_parent().movementSpeed -= pushValue
+#		print('leave', ' | ')

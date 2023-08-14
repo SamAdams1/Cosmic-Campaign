@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Enemies/enemy_asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Enemies/orangeAlien.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/EnemyScripts/enemy_asteroid_3.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 80.0062
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 26.0
+height = 130.0
 
 [node name="enemy_asteroid_5" instance=ExtResource( 1 )]
 physics_interpolation_mode = 1
-script = ExtResource( 4 )
-movementSpeed = 50.0
-health = 10
-experienceDroppedValue = 3
-coinDroppedValue = 5
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]
@@ -19,13 +20,18 @@ scale = Vector2( 0.424, 0.364 )
 texture = ExtResource( 2 )
 
 [node name="PlayerCollision" parent="." index="1"]
-position = Vector2( 0, 1 )
+position = Vector2( 1, 6 )
+shape = SubResource( 2 )
 
 [node name="HurtBox" parent="." index="2"]
 visible = true
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( -0.25, 1 )
+
+[node name="CollisionShape2D" parent="inFront/enemyPush" index="0"]
+position = Vector2( 38, -2 )
+shape = SubResource( 3 )
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

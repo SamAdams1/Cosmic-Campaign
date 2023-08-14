@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Enemies/enemy_asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Enemies/yellowAlien.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/EnemyScripts/enemy_asteroid_3.gd" type="Script" id=4]
 
 [node name="enemy_asteroid_6" instance=ExtResource( 1 )]
 physics_interpolation_mode = 1
-script = ExtResource( 4 )
-movementSpeed = 300.0
-coinDroppedValue = 5
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]

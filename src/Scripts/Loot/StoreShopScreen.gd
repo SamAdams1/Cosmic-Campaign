@@ -75,7 +75,7 @@ func buttonToggle():
 		buttonList.append(buttonPressed)
 		buttonPressed.get('custom_styles/normal/bg_color').bg_color  = Color(0.207843, 0.023529, 0.721569)
 	if buttonList.size() >= 2:
-		var lastButton = buttonList.pop_front()
+		lastButton = buttonList.pop_front()
 		lastButton.get('custom_styles/normal/bg_color').bg_color  = Color(0.254902, 0.023529, 0.890196)
 
 func _on_purchaseButton_pressed():
