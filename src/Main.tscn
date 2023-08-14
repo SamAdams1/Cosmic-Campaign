@@ -19,7 +19,6 @@
 position = Vector2( 1152, 761 )
 
 [node name="EnemySpawner" parent="Player" instance=ExtResource( 6 )]
-visible = false
 position = Vector2( -711.416, -460.908 )
 
 [node name="Earth" parent="." groups=["objects"] instance=ExtResource( 3 )]
@@ -48,7 +47,6 @@ coinValue = 500
 
 [node name="enemy_asteroid_6" parent="enemyHolder" instance=ExtResource( 7 )]
 position = Vector2( 11, 775 )
-movementSpeed = 200
 
 [node name="enemy_asteroid_5" parent="enemyHolder" instance=ExtResource( 2 )]
 position = Vector2( 291, 768 )

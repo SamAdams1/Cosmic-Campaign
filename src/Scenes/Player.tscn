@@ -109,8 +109,18 @@ position = Vector2( 18.4304, 61.8051 )
 [node name="enemySpawnPosition" type="Position2D" parent="ship"]
 position = Vector2( 3606.45, -3.11981e-07 )
 
+[node name="push" type="Area2D" parent="ship"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ship/push"]
+position = Vector2( 16.8047, 0.0715925 )
+rotation = 1.5708
+scale = Vector2( 1, 1.14897 )
+build_mode = 1
+polygon = PoolVector2Array( -196.236, 23.7948, -0.0716039, -220.711, 192.651, 20.7385 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 5.96046e-08 )
 scale = Vector2( 0.488949, 0.731644 )
 shape = SubResource( 24 )
@@ -120,7 +130,6 @@ current = true
 zoom = Vector2( 2, 2 )
 
 [node name="HurtBox" parent="." groups=["player"] instance=ExtResource( 1 )]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -341,6 +350,8 @@ texture_under = ExtResource( 19 )
 texture_progress = ExtResource( 14 )
 tint_progress = Color( 0.0313726, 0.772549, 1, 1 )
 
+[connection signal="body_entered" from="ship/push" to="." method="_on_push_body_entered"]
+[connection signal="body_exited" from="ship/push" to="." method="_on_push_body_exited"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_GrabArea_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_CollectArea_area_entered"]

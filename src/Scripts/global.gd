@@ -6,8 +6,11 @@ var node_creation_parent = null
 var closeEnemies = []
 var nearestEnemy = null
 
-#enemys killed
-var points = 0
+#score
+var enemiesKilled = 0 
+var finishLevel = 0
+var finishCoins = 0
+var finishTime = '10:00'
 
 # upgradable stats
 var fireRate = 1
@@ -18,14 +21,14 @@ var knockback = 0
 var knockbackUnlocked = false
 
 var playerMovementSpeed = 300
-var playerHealth = 10
+var playerHealth = 1000000
 var boostCapacity = 2
 var boostValue = 100
 
 #skills
-#var unlockedSkills = ['first', ]
+var unlockedSkills = ['first', 'turret']
 #var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Direction']
-var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
+#var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
 #var unlockedSkills = ['first',  'turret', '2direction', '3direction', '4direction']
 
 var selectedButton = null
@@ -37,6 +40,9 @@ var store = null
 #enemies
 var enemyHealthAdded = 0
 var timer = 600
+
+
+
 
 func instance_node(node, location, parent):
 	var node_instance = node.instance()

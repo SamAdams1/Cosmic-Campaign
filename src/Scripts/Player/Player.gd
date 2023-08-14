@@ -224,7 +224,9 @@ func _on_HurtBox_hurt(damage):
 		spriteDamageFlicker(.2)
 
 func _on_deathSound_finished():
-	
+	Global.finishLevel = experienceLevel
+	Global.finishCoins = money
+	Global.finishTime = $GUILayer/GUI/timerLabel.text
 	yield(get_tree().create_timer(1), "timeout")
 	get_tree().change_scene("res://Scenes/Menus/GameOverScreen.tscn")
 
@@ -451,3 +453,21 @@ func _on_autoAimArea_body_exited(body):
 
 
 
+var pushList = []
+
+func _on_push_body_entered(body):
+	if body.is_in_group('enemy') and isShipMoving(): 
+		body.isPlayerPushing = true
+		pushList.append(body)
+		if pushList.size() >= 2:
+			speed += 300
+		else:
+			speed += 100
+		print(pushList)
+
+
+func _on_push_body_exited(body):
+	if pushList.has(body): 
+		body.isPlayerPushing = false
+		speed = Global.playerMovementSpeed
+		pushList.erase(body)

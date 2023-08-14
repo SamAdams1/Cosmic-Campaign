@@ -13,7 +13,7 @@ radius = 57.0
 extents = Vector2( 79, 79 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 57.5, 53.5 )
+extents = Vector2( 57, 57 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 79, 79 )
@@ -25,7 +25,7 @@ extents = Vector2( 87.25, 85 )
 radius = 33.0
 height = 114.0
 
-[node name="enemy_base" type="KinematicBody2D"]
+[node name="enemy_base" type="KinematicBody2D" groups=["enemy"]]
 pause_mode = 1
 collision_layer = 2
 collision_mask = 2
@@ -42,7 +42,6 @@ position = Vector2( 0, -4.54747e-13 )
 shape = SubResource( 8 )
 
 [node name="HurtBox" parent="." instance=ExtResource( 3 )]
-visible = false
 collision_layer = 4
 collision_mask = 4
 
@@ -53,7 +52,6 @@ shape = SubResource( 2 )
 wait_time = 0.1
 
 [node name="HitBox" parent="." instance=ExtResource( 4 )]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -94,12 +92,11 @@ autostart = true
 [node name="inFront" type="Sprite" parent="."]
 
 [node name="enemyPush" type="Area2D" parent="inFront" groups=["enemyPush"]]
-position = Vector2( 50, 2 )
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inFront/enemyPush"]
-position = Vector2( 38, -3 )
+position = Vector2( 89, 0 )
 rotation = 1.5708
 shape = SubResource( 9 )
 

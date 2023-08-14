@@ -5,12 +5,16 @@
 
 [node name="enemy_asteroid_2" instance=ExtResource( 1 )]
 physics_interpolation_mode = 1
+movementSpeed = 125
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 1, -11 )
 scale = Vector2( 0.252, 0.268 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="inFront/enemyPush" index="0"]
+position = Vector2( 91, 0 )
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

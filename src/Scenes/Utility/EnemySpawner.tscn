@@ -19,12 +19,11 @@ script = ExtResource( 1 )
 enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="spawnTimer" type="Timer" parent="."]
-wait_time = 1.5
 autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2( 12.6059, 59.3208 )
-scale = Vector2( 1.34211, 1.37393 )
+position = Vector2( 148.097, 138.273 )
+scale = Vector2( 1.08005, 1.11577 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

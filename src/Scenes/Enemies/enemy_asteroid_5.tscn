@@ -12,6 +12,7 @@ height = 130.0
 
 [node name="enemy_asteroid_5" instance=ExtResource( 1 )]
 physics_interpolation_mode = 1
+health = 4
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]
@@ -23,14 +24,11 @@ texture = ExtResource( 2 )
 position = Vector2( 1, 6 )
 shape = SubResource( 2 )
 
-[node name="HurtBox" parent="." index="2"]
-visible = true
-
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( -0.25, 1 )
 
 [node name="CollisionShape2D" parent="inFront/enemyPush" index="0"]
-position = Vector2( 38, -2 )
+position = Vector2( 90, 0 )
 shape = SubResource( 3 )
 
 [editable path="HurtBox"]

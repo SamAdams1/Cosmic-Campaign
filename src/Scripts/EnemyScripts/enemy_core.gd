@@ -52,7 +52,7 @@ func _on_HurtBox_hurt(damage):
 			notDead = false
 			disableEnemyOnDead()
 			sound.play()
-			Global.points += 1
+			Global.enemiesKilled += 1
 			#explosion animation
 			var explosion_instance = explosion.instance()
 			explosion_instance.position = get_global_position()
