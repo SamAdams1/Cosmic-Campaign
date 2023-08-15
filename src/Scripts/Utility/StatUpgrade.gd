@@ -5,6 +5,7 @@ onready var tracerBulletUnlocked = false
 onready var boostUnlocked = false
 onready var pointsLabel = $points
 onready var warningLabel  = $warning
+onready var exitButton = $boostCapacity/exitButton
 var target = null
 var value = null
 
@@ -13,6 +14,8 @@ onready var turret = get_tree().get_root().find_node('turret', true, false)
 onready var skillTree = get_tree().get_root().find_node('SkillTree', true, false)
 
 signal setKnockBack
+
+onready var totalUpgradeNum = 54
 
 
 #signal upgradeStats
@@ -31,12 +34,16 @@ const VALUES = {
 func _ready():
 	pointsLabel.text = 'x' + str(statPoints)
 	warningLabel.visible = false
+	exitButton.visible = false
 
 
 
 func _physics_process(_delta):
 	if get_tree().paused == true:
 		updatePoints()
+		if player.experienceLevel >= 18:
+			exitButton.visible = true
+			
 
 func _on_button_pressed():
 	if skillTree.visible == false:
@@ -106,3 +113,9 @@ func tracerBulletandBoost(item):
 		tracerBulletUnlocked = true
 		statPoints += $bulletPenetration/TextureProgress.value
 		$bulletPenetration/TextureProgress.value = 0
+
+
+
+func _on_exitButton_pressed():
+	yield(get_tree().create_timer(0.25), "timeout")
+	player.upgradePlayer()

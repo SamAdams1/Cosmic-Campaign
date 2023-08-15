@@ -7,6 +7,7 @@ onready var music = $music
 onready var scoreLabel = $MarginContainer/VBoxContainer/score
 
 func _ready():
+	get_tree().paused = false
 	music.play()
 	Global.unlockedSkills = ['first', ]
 	Global.selectedButton = null
