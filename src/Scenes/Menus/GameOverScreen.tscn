@@ -82,8 +82,8 @@ margin_right = 924.0
 margin_bottom = 298.0
 custom_fonts/font = SubResource( 7 )
 text = "Score:    Level:    Coins:    Time:"
-align = 1
 valign = 1
+autowrap = true
 
 [node name="game over2" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false

@@ -225,8 +225,8 @@ func _on_HurtBox_hurt(damage):
 
 func _on_deathSound_finished():
 	Global.finishLevel = experienceLevel
-	Global.finishCoins = money
 	Global.finishTime = $GUILayer/GUI/timerLabel.text
+	speed = 0
 	yield(get_tree().create_timer(1), "timeout")
 	get_tree().change_scene("res://Scenes/Menus/GameOverScreen.tscn")
 
@@ -251,6 +251,7 @@ func _on_CollectArea_area_entered(area):
 		calculateExperience(gemExp)
 	if area.is_in_group('coins'):
 		money += area.collect()
+		Global.coinsCollected += area.collect()
 		moneyLabel.text = str(money)
 	if area.is_in_group('health'):
 		playerHealth += area.collect()
@@ -297,7 +298,6 @@ func setExpBar(setValue = 1, setMaxValue = 100):
 signal firstLevel
 
 func _on_levelUpSound_finished():
-	
 	toggleFire = false
 	
 	if experienceLevel % 2 != 0 or experienceLevel == 1:
@@ -463,7 +463,6 @@ func _on_push_body_entered(body):
 			speed += 300
 		else:
 			speed += 100
-		print(pushList)
 
 
 func _on_push_body_exited(body):

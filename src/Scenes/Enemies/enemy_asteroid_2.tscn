@@ -5,7 +5,7 @@
 
 [node name="enemy_asteroid_2" instance=ExtResource( 1 )]
 physics_interpolation_mode = 1
-movementSpeed = 125
+movementSpeed = 225
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]

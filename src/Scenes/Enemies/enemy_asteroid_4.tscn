@@ -6,6 +6,8 @@
 [ext_resource path="res://Sprites/Enemies/blue alien stopped.png" type="Texture" id=5]
 
 [node name="enemy_asteroid_4" instance=ExtResource( 1 )]
+movementSpeed = 250
+health = 3
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]

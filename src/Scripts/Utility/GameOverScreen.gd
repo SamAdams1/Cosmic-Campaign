@@ -10,7 +10,7 @@ func _ready():
 	music.play()
 	Global.unlockedSkills = ['first', ]
 	Global.selectedButton = null
-	scoreLabel.text = 'Level: '+str(Global.finishLevel)+'    Aliens Killed: '+str(Global.enemiesKilled)+'     Coins: '+str(Global.finishCoins) + '     Time:'+Global.finishTime
+	scoreLabel.text = 'Level: '+str(Global.finishLevel)+'\nAliens Killed: '+str(Global.enemiesKilled)+'\nCoins Collected: '+str(Global.coinsCollected) + '\nTime:'+Global.finishTime
 
 func _on_NewGameButton_pressed():
 	get_tree().change_scene(mainGameScene.resource_path)

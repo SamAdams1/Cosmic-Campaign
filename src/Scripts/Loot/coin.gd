@@ -1,11 +1,12 @@
 extends Area2D
 
 export var coinValue = 5
+export var speed = -5
 
 onready var player = get_tree().current_scene.get_node('Player')
 
 var target = null
-var speed = -5
+
 
 onready var sprite = $Sprite
 onready var collision = $CollisionShape2D

@@ -9,7 +9,7 @@ var nearestEnemy = null
 #score
 var enemiesKilled = 0 
 var finishLevel = 0
-var finishCoins = 0
+var coinsCollected = 0
 var finishTime = '10:00'
 
 # upgradable stats
@@ -21,12 +21,12 @@ var knockback = 0
 var knockbackUnlocked = false
 
 var playerMovementSpeed = 300
-var playerHealth = 1000000
+var playerHealth = 10000
 var boostCapacity = 2
 var boostValue = 100
 
 #skills
-var unlockedSkills = ['first', 'turret']
+var unlockedSkills = ['first', ]
 #var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Direction']
 #var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
 #var unlockedSkills = ['first',  'turret', '2direction', '3direction', '4direction']
@@ -40,6 +40,7 @@ var store = null
 #enemies
 var enemyHealthAdded = 0
 var timer = 600
+var numOfEnemies = 0
 
 
 
