@@ -94,6 +94,18 @@ func getRandomPosition():
 
 #[topEnemies, rightEnemies, bottomEnemies, leftEnemies]
 func getSpawnPoints():
+	if topEnemies == 0 :
+		print('yourmom')
+		return [-600,625]
+	elif rightEnemies == 0:
+		print('yourmom')
+		return [600, 1800]
+	elif bottomEnemies == 0:
+		print('yourmom')
+		return [1800,2800]
+	elif leftEnemies == 0:
+		return [2900, 4100]
+	
 	var areaList = [topEnemies, rightEnemies, bottomEnemies, leftEnemies]
 	var smallestArea = areaList.min()
 	var index = areaList.find(smallestArea)
@@ -101,25 +113,25 @@ func getSpawnPoints():
 	
 	if index == 0:
 		print('top')
-		return [-700,1000]
+		return [-600,625]
 	if index == 1:
 		print('right')
-		return [600, 2000]
+		return [600, 1800]
 	if index == 2:
-		print('buttom')
-		return [1500,3500]
+		print('bottom')
+		return [1800,2800]
 	else:
 		print('left')
-		return [2700, 4700]
+		return [2700, 4100]
 	
 #top: [-700,1000]
 #right [600, 2000]
 #bottom [1500,3500]
-#left [2700, 4700]
+#left [2700, 4100]
 
-var leftEnemies = 1
-var rightEnemies = 1
-var topEnemies = 1
+var leftEnemies = 0
+var rightEnemies = 0
+var topEnemies = 0
 var bottomEnemies = 0
 
 func _on_leftSpawn_body_entered(body):

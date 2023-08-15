@@ -4,7 +4,7 @@ onready var bullet = preload('res://Scenes/bullet.tscn')
 onready var bigBullet = preload("res://Scenes/bigBullet.tscn")
 onready var sound = $turretShootSound
 var waitToFire = false
-var toggleFire = false
+var toggleFire = true
 var fireRate =  Global.fireRate
 var bulletSpeed = Global.bulletSpeed
 var currentTurret = null
@@ -39,14 +39,8 @@ func _ready():
 
 func _physics_process(_delta):
 	look_at(get_global_mouse_position())
-#	if get_tree().paused == true:
-#		toggleFire = false
-	
 
-func _input(event): #shooting has to be in here so only one input is taken per mouse click
-	if event.is_action_pressed("attack"):
-		toggleFire = !toggleFire
-		
+func _input(_event):
 	while toggleFire and !waitToFire and currentTurret != null and get_tree().paused == false:
 		waitToFire = true
 		sound.play()

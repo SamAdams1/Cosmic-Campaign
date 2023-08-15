@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var controls = $GUILayer/GUI/ControlsScreen
+
 #upgradable stats
 var speed = Global.playerMovementSpeed
 var playerHealth = Global.playerHealth
@@ -83,6 +85,10 @@ func _ready():
 #	AudioServer.set_bus_mute(master_sound, true)
 #	skillTree.points += 20
 #	statUpgrade.statPoints += 30
+	
+	controls.visible = true
+	get_tree().paused = true
+	shipMovingSound.volume_db = -100
 	
 	labelLevel.text = "Level: " + str(experienceLevel)
 	skillTree.visible = false
@@ -192,13 +198,11 @@ func calculateBoostBar(delta):
 	boostBar.value = boostAmount
 
 
-func _input(event):
-	if event.is_action_pressed("fire"):
-		toggleFire = !toggleFire
+
 
 func isShipMoving():
 	if ((Input.is_action_pressed("right") or Input.is_action_pressed("down") or Input.is_action_pressed("left") or Input.is_action_pressed("up")) and lookNotPressed):
-		shipMovingSound.volume_db = -25
+		shipMovingSound.volume_db = -30
 		return true
 	
 	else:
