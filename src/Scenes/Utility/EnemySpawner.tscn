@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Utility/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Enemies/enemy_asteroid_4.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -104, -157, 0, 0, 0, 0, 522.108, -157.087, 0, 0, 0, 0, 1220.53, -156.582, 0, 0, 0, 0, 1226.71, 315.233, 0, 0, 0, 0, 1223, 764, 0, 0, 0, 0, 501.739, 757.08, 0, 0, 0, 0, -207.488, 758.446, 0, 0, 0, 0, -213.969, 299.996, 0, 0, 0, 0, -206, -158, 0, 0, 0, 0, -104, -157 )
 }
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 805, 566.5 )
 
 [node name="EnemySpawner" type="Node2D"]
 pause_mode = 1
@@ -38,19 +41,18 @@ position = Vector2( -62, 16 )
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="topSpawn"]
-position = Vector2( 6, 6 )
-polygon = PoolVector2Array( -51, -16, 737, 420, 2085, -310, -512, -291 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topSpawn"]
+position = Vector2( -15, -69.5 )
+shape = SubResource( 2 )
 
 [node name="rightSpawn" type="Area2D" parent="."]
 position = Vector2( 1306, 10 )
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rightSpawn"]
-position = Vector2( -1246, 900 )
-rotation = 3.14159
-polygon = PoolVector2Array( -1894, -280, -1996, -280, -1971, 1186, -634, 472, -647, 418 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="rightSpawn"]
+position = Vector2( 220, -57 )
+shape = SubResource( 2 )
 
 [node name="bottomSpawn" type="Area2D" parent="."]
 position = Vector2( -62, 964 )
@@ -58,18 +60,19 @@ rotation = 3.14159
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="bottomSpawn"]
-position = Vector2( -1489, 64.0001 )
-polygon = PoolVector2Array( -51, -16, 737, 420, 2085, -310, -512, -291 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bottomSpawn"]
+position = Vector2( -1591, -125.004 )
+rotation = -3.14159
+shape = SubResource( 2 )
 
 [node name="leftSpawn" type="Area2D" parent="."]
 position = Vector2( -62, 16 )
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="leftSpawn"]
-position = Vector2( 1368, -2 )
-polygon = PoolVector2Array( -1894, -280, -1996, -280, -1971, 1186, -634, 472, -647, 418 )
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="leftSpawn"]
+position = Vector2( -21, 1064 )
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawnTimer_timeout"]
 [connection signal="body_entered" from="topSpawn" to="." method="_on_topSpawn_body_entered"]

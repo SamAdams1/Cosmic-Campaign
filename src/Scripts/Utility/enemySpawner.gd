@@ -51,7 +51,7 @@ var difficultyChanges = {
 var time = timer
 
 func _ready():
-	spawnTimer.wait_time = .5
+	spawnTimer.wait_time = 1
 
 func _physics_process(delta):
 	timer -= delta
@@ -101,21 +101,21 @@ func getSpawnPoints():
 	
 	if index == 0:
 		print('top')
-		return [0, 1500]
+		return [-700,1000]
 	if index == 1:
 		print('right')
-		return [1000,2500]
+		return [600, 2000]
 	if index == 2:
 		print('buttom')
-		return [2000,3500]
+		return [1500,3500]
 	else:
 		print('left')
-		return [3000,5000]
+		return [2700, 4700]
 	
-#top: 0,1500
-#right 1000,2500
-#bottom 2000,3500
-#left 3000,5000
+#top: [-700,1000]
+#right [600, 2000]
+#bottom [1500,3500]
+#left [2700, 4700]
 
 var leftEnemies = 1
 var rightEnemies = 1

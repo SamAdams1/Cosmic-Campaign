@@ -21,7 +21,7 @@ var knockback = 0
 var knockbackUnlocked = false
 
 var playerMovementSpeed = 300
-var playerHealth = 10000
+var playerHealth = 10
 var boostCapacity = 2
 var boostValue = 100
 
