@@ -18,6 +18,7 @@ extents = Vector2( 25.5, 21 )
 [node name="bigBullet" type="RigidBody2D"]
 pause_mode = 2
 physics_interpolation_mode = 1
+z_index = 2
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0

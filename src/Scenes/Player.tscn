@@ -128,6 +128,7 @@ scale = Vector2( 0.488949, 0.731644 )
 shape = SubResource( 24 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -400 )
 current = true
 zoom = Vector2( 2, 2 )
 

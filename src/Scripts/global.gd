@@ -14,7 +14,7 @@ var finishTime = '10:00'
 
 # upgradable stats
 var fireRate = 1
-var bulletSpeed = 500
+var bulletSpeed = 600
 var bulletHealth = 1
 var bulletDamageMultiplier = 0
 var knockback = 0
@@ -26,8 +26,8 @@ var boostCapacity = 2
 var boostValue = 100
 
 #skills
-var unlockedSkills = ['first', ]
-#var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Direction']
+#var unlockedSkills = ['first', ]
+var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Barrel']
 #var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
 #var unlockedSkills = ['first',  'turret', '2direction', '3direction', '4direction']
 

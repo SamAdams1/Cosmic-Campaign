@@ -8,7 +8,7 @@ onready var sprite = $Sprite
 onready var hitBox = $HitBox/CollisionShape2D
 onready var collision = $CollisionShape2D
 
-onready var statUpgrade = preload("res://Scenes/Utility/StatUpgrade.tscn")
+#onready var statUpgrade = preload("res://Scenes/Menus/StatUpgrade.tscn")
 
 var bulletHealth = Global.bulletHealth
 onready var bulletDamageMultiplier = Global.bulletDamageMultiplier
@@ -16,7 +16,7 @@ onready var bulletDamageMultiplier = Global.bulletDamageMultiplier
 
 var target = null
 var direction = Vector2.RIGHT
-onready var speed = 400
+onready var speed = Global.bulletSpeed
 var homingBulletUnlocked = false
 var explosiveBulletUnlocked = false
 
@@ -28,6 +28,8 @@ func _ready():
 	explosiveBulletUnlocked = player.explosiveBulletUnlocked
 	if homingBulletUnlocked:
 		bulletHealth = 0
+	if bulletHealth == 0:
+		self.set_collision_mask_bit(2, true)
 
 func _physics_process(delta):
 	if target and is_instance_valid(target) and homingBulletUnlocked:
@@ -37,7 +39,8 @@ func _physics_process(delta):
 		look_at(target.global_position)
 	if target and !is_instance_valid(target):
 		queue_free()
-		
+
+
 func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):
 		sprite.visible = false

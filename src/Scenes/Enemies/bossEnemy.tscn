@@ -1,0 +1,200 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/Utility/HurtBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Utility/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/EnemyScripts/enemyBoss.gd" type="Script" id=3]
+[ext_resource path="res://Audio/SFX/ArcadeExplosion.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/Enemies/demon in ufo.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 84.0536
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 467, 119.5 )
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends Area2D
+
+enum{Cooldown, HitOnce, DisableHitbox}
+export var HurtBoxType = 0
+
+onready var collision = $CollisionShape2D
+onready var disableTimer = $DisableTimer
+
+signal hurt(damage)
+
+
+
+func _on_HurtBox_area_entered(area):
+	if area.is_in_group(\"attack\"):
+		if not area.get(\"damage\") == null:
+			match HurtBoxType:
+				0: #cooldown
+					collision.call_deferred(\"set\", \"disabled\", true)
+					disableTimer.start()
+				1: #HitOnce
+					pass
+				2: #DisableHitBox
+					if area.has_method(\"tempDisable\"):
+						area.tempDisable()
+			var damage = area.damage
+			emit_signal(\"hurt\", damage)
+				
+				
+
+func _on_DisableTimer_timeout():
+	collision.call_deferred(\"set\", \"disabled\", false)
+"
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 88, 70 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 259, 59 )
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 118.0
+height = 696.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 84, 62 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 490.5, 151.5 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 413, 618 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 813, 1555 )
+
+[node name="bossEnemy" type="KinematicBody2D" groups=["enemy"]]
+pause_mode = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+health = 1000
+experienceDroppedValue = 100
+coinDroppedValue = 1000
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, -9 )
+scale = Vector2( 0.868519, 0.707031 )
+texture = ExtResource( 5 )
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1, -126 )
+shape = SubResource( 8 )
+
+[node name="HurtBox" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 21 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( -1, 15.5 )
+shape = SubResource( 2 )
+
+[node name="DisableTimer" parent="HurtBox" index="1"]
+wait_time = 0.39
+
+[node name="HurtBox2" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 0, 54 )
+collision_layer = 4
+collision_mask = 4
+script = SubResource( 9 )
+
+[node name="CollisionShape2D" parent="HurtBox2" index="0"]
+shape = SubResource( 10 )
+
+[node name="DisableTimer" parent="HurtBox2" index="1"]
+wait_time = 0.39
+
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( -1, 17 )
+collision_layer = 2
+collision_mask = 2
+damage = 4
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 3 )
+
+[node name="BulletCollision" type="StaticBody2D" parent="." groups=["enemy"]]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletCollision"]
+position = Vector2( 4, 36 )
+rotation = 1.5708
+shape = SubResource( 13 )
+
+[node name="BulletCollision2" type="StaticBody2D" parent="." groups=["enemy"]]
+visible = false
+position = Vector2( 0, 54 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletCollision2"]
+shape = SubResource( 5 )
+
+[node name="BulletCollisionArea" type="Area2D" parent="." groups=["enemy"]]
+visible = false
+position = Vector2( -210, -32 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletCollisionArea"]
+position = Vector2( 214.5, 48.5 )
+shape = SubResource( 6 )
+
+[node name="DeathExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="retreatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="retreatArea"]
+position = Vector2( 3, -30 )
+rotation = 1.5708
+shape = SubResource( 15 )
+
+[node name="retreatTimer" type="Timer" parent="retreatArea"]
+wait_time = 2.0
+
+[node name="keepPlayerClose" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="keepPlayerClose"]
+position = Vector2( -3.62115e-06, 1.00032 )
+rotation = 1.5708
+shape = SubResource( 14 )
+
+[node name="retreatTimer" type="Timer" parent="keepPlayerClose"]
+wait_time = 2.0
+
+[node name="spawnPoint1" type="Position2D" parent="."]
+position = Vector2( -281, 94 )
+
+[node name="spawnPoint2" type="Position2D" parent="."]
+position = Vector2( 284, 100 )
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
+[connection signal="area_entered" from="HurtBox2" to="." method="_on_HurtBox_area_entered"]
+[connection signal="hurt" from="HurtBox2" to="." method="_on_HurtBox_hurt"]
+[connection signal="finished" from="DeathExplosionSound" to="." method="_on_AudioStreamPlayer_finished"]
+[connection signal="body_entered" from="retreatArea" to="." method="_on_retreatArea_body_entered"]
+[connection signal="body_exited" from="retreatArea" to="." method="_on_retreatArea_body_exited"]
+[connection signal="timeout" from="retreatArea/retreatTimer" to="." method="_on_retreatTimer_timeout"]
+[connection signal="body_entered" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_entered"]
+[connection signal="body_exited" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_exited"]
+[connection signal="timeout" from="keepPlayerClose/retreatTimer" to="." method="_on_retreatTimer_timeout"]
+
+[editable path="HurtBox"]
+[editable path="HurtBox2"]
+[editable path="HitBox"]

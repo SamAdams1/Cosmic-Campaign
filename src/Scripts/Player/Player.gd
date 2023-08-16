@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var controls = $GUILayer/GUI/ControlsScreen
+onready var camera = $Camera2D
 
 #upgradable stats
 var speed = Global.playerMovementSpeed
@@ -122,6 +123,7 @@ func _physics_process(delta):
 			waitToFire = true
 			yield(get_tree().create_timer(fireRate), "timeout")
 			waitToFire = false
+			
 
 func movement(_delta):
 	var input_velocity = Vector2.ZERO
@@ -454,13 +456,9 @@ func _on_autoAimArea_body_exited(body):
 
 
 
-
-
-
 var pushList = []
-
 func _on_push_body_entered(body):
-	if body.is_in_group('enemy') and isShipMoving(): 
+	if body.is_in_group('enemy') and isShipMoving() and body.name != 'bossEnemy': 
 		body.isPlayerPushing = true
 		pushList.append(body)
 		if pushList.size() >= 2:

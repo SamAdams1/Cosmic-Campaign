@@ -1,9 +1,6 @@
 extends Control
 
-
-
-
-func _on_continueButton_pressed():
-	self.visible = false
-	get_tree().paused = false
-	
+func _input(event):
+	if event.is_action_pressed("attack") and self.visible == true:
+		self.visible = false
+		get_tree().paused = false

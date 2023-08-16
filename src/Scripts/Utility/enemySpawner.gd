@@ -16,8 +16,13 @@ onready var timer = Global.timer
 
 #[510, 420, 330, 240, 150, 75]
 var difficultyChanges = {
-	510: {
+	555: {
 		'enemyHealth': 4,
+		'spawnTime': .5,
+		'indexes': [0,],
+	},
+	510: {
+		'enemyHealth': 8,
 		'spawnTime': .5,
 		'indexes': [0, 1],
 	},
@@ -37,13 +42,13 @@ var difficultyChanges = {
 		'indexes': [3,4],
 	},
 	150: {
-		'enemyHealth': 16,
+		'enemyHealth': 20,
 		'spawnTime': .3,
 		'indexes': [4,5],
 	},
 	75: {
-		'enemyHealth': 18,
-		'spawnTime': .2,
+		'enemyHealth': 25,
+		'spawnTime': .4,
 		'indexes': [1,2,3,4,5],
 	},
 }
@@ -59,9 +64,10 @@ func _physics_process(delta):
 	
 	if difficultyChanges.has(time):
 		changeDifficulty()
+		print(Global.numOfEnemies)
 
 func _on_spawnTimer_timeout():
-	spawnEnemy()
+#	spawnEnemy()
 	Global.numOfEnemies += 1
 #	print(Global.numOfEnemies)
 
@@ -88,20 +94,15 @@ func changeDifficulty():
 func getRandomPosition():
 	var spawnPoints = getSpawnPoints()
 	spawnPath.offset = rand_range(spawnPoints[0], spawnPoints[1])
-	print(spawnPath.offset)
-	print([topEnemies,rightEnemies,bottomEnemies,leftEnemies])
 	return spawnPosition.global_position
 
 #[topEnemies, rightEnemies, bottomEnemies, leftEnemies]
 func getSpawnPoints():
 	if topEnemies == 0 :
-		print('yourmom')
 		return [-600,625]
 	elif rightEnemies == 0:
-		print('yourmom')
 		return [600, 1800]
 	elif bottomEnemies == 0:
-		print('yourmom')
 		return [1800,2800]
 	elif leftEnemies == 0:
 		return [2900, 4100]
@@ -109,24 +110,19 @@ func getSpawnPoints():
 	var areaList = [topEnemies, rightEnemies, bottomEnemies, leftEnemies]
 	var smallestArea = areaList.min()
 	var index = areaList.find(smallestArea)
-	print(smallestArea, '  |  ', index)
+#	print(smallestArea, '  |  ', index)
 	
 	if index == 0:
-		print('top')
 		return [-600,625]
 	if index == 1:
-		print('right')
 		return [600, 1800]
 	if index == 2:
-		print('bottom')
 		return [1800,2800]
 	else:
-		print('left')
 		return [2700, 4100]
-	
-#top: [-700,1000]
-#right [600, 2000]
-#bottom [1500,3500]
+#top: [-600,625]
+#right [600, 1800]
+#bottom [1500,2800]
 #left [2700, 4100]
 
 var leftEnemies = 0

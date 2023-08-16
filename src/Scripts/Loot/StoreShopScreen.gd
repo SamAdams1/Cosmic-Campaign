@@ -93,7 +93,7 @@ func applyPurchases():
 	elif target == 'skillPointButton':
 		player.skillTree.points += 1
 	elif target == 'healthButton':
-		Global.store.spawnHealth(2)
+		Global.store.spawnHealth(20)
 	elif target == 'killEnemiesButton':
 		Global.store.killEnemies()
 	else:

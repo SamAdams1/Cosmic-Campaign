@@ -18,6 +18,7 @@ extents = Vector2( 19.5, 13 )
 [node name="direcitonalBullet" type="RigidBody2D"]
 pause_mode = 2
 physics_interpolation_mode = 1
+z_index = 2
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -54,9 +55,9 @@ collision_mask = 4
 shape = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.415686, 0.027451, 1 )
+modulate = Color( 1, 0.305882, 0, 1 )
 position = Vector2( 19.5, 0 )
-scale = Vector2( 0.164, 0.05 )
+scale = Vector2( 0.164, 0.07 )
 texture = ExtResource( 3 )
 
 [node name="homingArea" parent="." instance=ExtResource( 5 )]

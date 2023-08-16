@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Utility/enemySpawner.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_4.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_5.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemies/enemy_asteroid_6.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid5.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid6.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 _data = {

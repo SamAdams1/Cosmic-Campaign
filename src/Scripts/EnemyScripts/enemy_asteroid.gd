@@ -37,7 +37,7 @@ func _on_HurtBox_area_entered(area):
 		velocity = -velocity * knockback
 		stun = true
 		stunTimer.start()
-		
+
 
 var enemyPushList = []
 
