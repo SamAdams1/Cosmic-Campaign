@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var controls = $GUILayer/GUI/ControlsScreen
 onready var camera = $Camera2D
+onready var bossHealthBar = $GUILayer/GUI/bossHealthBar
 
 #upgradable stats
 var speed = Global.playerMovementSpeed

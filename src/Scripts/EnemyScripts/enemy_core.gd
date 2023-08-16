@@ -59,6 +59,8 @@ func _on_HurtBox_hurt(damage):
 			get_tree().get_root().add_child(explosion_instance)
 			
 			createLoot()
+	if self.name == 'bossEnemy':
+		player.bossHealthBar.value -= damage
 
 func disableEnemyOnDead():
 	playerCollision.call_deferred("set", "disabled", true)

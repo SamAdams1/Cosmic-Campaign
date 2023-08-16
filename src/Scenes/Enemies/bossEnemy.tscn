@@ -1,10 +1,17 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Utility/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Utility/HitBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/EnemyScripts/enemyBoss.gd" type="Script" id=3]
 [ext_resource path="res://Audio/SFX/ArcadeExplosion.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sprites/Enemies/demon in ufo.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/skull.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Enemies/enemyAsteroid6.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 84.0536
@@ -63,19 +70,21 @@ extents = Vector2( 84, 62 )
 extents = Vector2( 490.5, 151.5 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 413, 618 )
+extents = Vector2( 739.5, 1151 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 813, 1555 )
+extents = Vector2( 1039.99, 1546 )
 
 [node name="bossEnemy" type="KinematicBody2D" groups=["enemy"]]
 pause_mode = 1
+z_index = -1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 3 )
-health = 1000
+health = 10000
 experienceDroppedValue = 100
 coinDroppedValue = 1000
+enemies = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -9 )
@@ -160,7 +169,7 @@ bus = "SFX"
 [node name="retreatArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreatArea"]
-position = Vector2( 3, -30 )
+position = Vector2( 2.99994, -14.5001 )
 rotation = 1.5708
 shape = SubResource( 15 )
 
@@ -178,14 +187,21 @@ shape = SubResource( 14 )
 wait_time = 2.0
 
 [node name="spawnPoint1" type="Position2D" parent="."]
-position = Vector2( -281, 94 )
+position = Vector2( -280, 65 )
 
 [node name="spawnPoint2" type="Position2D" parent="."]
-position = Vector2( 284, 100 )
+position = Vector2( 278, 66 )
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[node name="rotater" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="shootTimer" type="Timer" parent="."]
+
+[node name="enemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
-[connection signal="area_entered" from="HurtBox2" to="." method="_on_HurtBox_area_entered"]
 [connection signal="hurt" from="HurtBox2" to="." method="_on_HurtBox_hurt"]
 [connection signal="finished" from="DeathExplosionSound" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="body_entered" from="retreatArea" to="." method="_on_retreatArea_body_entered"]
@@ -194,6 +210,8 @@ position = Vector2( 284, 100 )
 [connection signal="body_entered" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_entered"]
 [connection signal="body_exited" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_exited"]
 [connection signal="timeout" from="keepPlayerClose/retreatTimer" to="." method="_on_retreatTimer_timeout"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]
+[connection signal="timeout" from="enemySpawnTimer" to="." method="_on_enemySpawnTimer_timeout"]
 
 [editable path="HurtBox"]
 [editable path="HurtBox2"]
