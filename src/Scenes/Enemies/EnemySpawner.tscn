@@ -27,6 +27,7 @@ extents = Vector2( 800.5, 562.25 )
 
 [node name="EnemySpawner" type="Node2D"]
 pause_mode = 1
+position = Vector2( -348, -285 )
 script = ExtResource( 1 )
 enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ]
 

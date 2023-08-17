@@ -26,7 +26,7 @@ const VALUES = {
 	'boostCapacity': 0.9,
 	'maxHealth': 2,
 	'fireRate': 0.1,
-	'knockback': 1,
+	'knockback': 2,
 	'bulletHealth': 1,
 	'bulletDamage': .5,
 	'bulletSpeed': 100,
@@ -34,7 +34,7 @@ const VALUES = {
 func _ready():
 	pointsLabel.text = 'x' + str(statPoints)
 	warningLabel.visible = false
-	exitButton.visible = false
+#	exitButton.visible = false
 
 
 
@@ -83,6 +83,7 @@ func upgradeStat():
 		
 	elif target == 'knockback':
 		Global.knockback += value
+		Global.knockbackUnlocked = true
 		emit_signal("setKnockBack")
 		
 	elif target == 'fireRate':
@@ -90,6 +91,7 @@ func upgradeStat():
 		
 	elif target == 'maxHealth':
 		Global.playerHealth += value
+		player.playerHealth += value
 		
 	elif target == 'boostCapacity' and boostUnlocked:
 		Global.boostCapacity += value

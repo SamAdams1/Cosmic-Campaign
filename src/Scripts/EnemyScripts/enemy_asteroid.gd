@@ -25,6 +25,7 @@ func _process(delta):
 
 func _on_AudioStreamPlayer_finished():
 	Global.numOfEnemies -= 1
+#	print(Global.numOfEnemies)
 	queue_free()
 	
 
@@ -33,7 +34,7 @@ func _on_stun_timer_timeout():
 	
 func _on_HurtBox_area_entered(area):
 	
-	if area.is_in_group("attack") and knockbackUnlocked:
+	if area.is_in_group("attack") and knockbackUnlocked and !Global.bossTime:
 		velocity = -velocity * knockback
 		stun = true
 		stunTimer.start()

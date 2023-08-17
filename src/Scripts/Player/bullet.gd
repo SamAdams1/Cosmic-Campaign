@@ -9,6 +9,7 @@ onready var hitBox = $HitBox/CollisionShape2D
 onready var collision = $CollisionShape2D
 
 #onready var statUpgrade = preload("res://Scenes/Menus/StatUpgrade.tscn")
+onready var player = get_tree().current_scene.get_node('Player')
 
 var bulletHealth = Global.bulletHealth
 onready var bulletDamageMultiplier = Global.bulletDamageMultiplier
@@ -16,16 +17,16 @@ onready var bulletDamageMultiplier = Global.bulletDamageMultiplier
 
 var target = null
 var direction = Vector2.RIGHT
-onready var speed = Global.bulletSpeed
-var homingBulletUnlocked = false
-var explosiveBulletUnlocked = false
+onready var speed = Global.bulletSpeed / 2
+onready var homingBulletUnlocked = player.homingBulletUnlocked
+onready var explosiveBulletUnlocked = player.explosiveBulletUnlocked
 
 func _ready():
 	$HitBox.damage += bulletDamageMultiplier
-	var player = get_tree().current_scene.get_node('Player')
+	if self.is_in_group('bigBullet'):
+		$HitBox.damage *= 2
 
-	homingBulletUnlocked = player.homingBulletUnlocked
-	explosiveBulletUnlocked = player.explosiveBulletUnlocked
+	
 	if homingBulletUnlocked:
 		bulletHealth = 0
 	if bulletHealth == 0:
@@ -52,14 +53,18 @@ func _on_bigBullet_body_entered(body):
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = explosiveBulletHit
 			sound.play()
-		else:
+			
+			yield(get_tree().create_timer(0.1), "timeout")
 			hitBox.call_deferred("set", "disabled", true)
 			collision.call_deferred("set", "disabled", true)
+		else:
 			var explosion_instance = explosion.instance()
 			explosion_instance.position = get_global_position()
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = regBulletHit
 			sound.play()
+			hitBox.call_deferred("set", "disabled", true)
+			collision.call_deferred("set", "disabled", true)
 
 func _on_bulletPenetration_area_entered(area):
 	if area.is_in_group("enemy"):
@@ -70,12 +75,12 @@ func _on_bulletPenetration_area_entered(area):
 func _on_homingArea_body_entered(body):
 	if body.is_in_group('enemy') and homingBulletUnlocked:
 		target = body
-		
-func upgradeBullets():
-	if target == 'tracerBullet':
-		homingBulletUnlocked = true
-	elif target == 'explosiveBullet':
-		explosiveBulletUnlocked = true
+#
+#func upgradeBullets():
+#	if target == 'tracerBullet':
+#		homingBulletUnlocked = true
+#	elif target == 'explosiveBullet':
+#		explosiveBulletUnlocked = true
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

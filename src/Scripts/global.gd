@@ -20,14 +20,14 @@ var bulletDamageMultiplier = 0
 var knockback = 0
 var knockbackUnlocked = false
 
-var playerMovementSpeed = 275
+var playerMovementSpeed = 300
 var playerHealth = 10
 var boostCapacity = 2
 var boostValue = 100
 
 #skills
-#var unlockedSkills = ['first', ]
-var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Barrel']
+var unlockedSkills = ['first', ]
+#var unlockedSkills = ['first',  'turret', 'bigBullet', 'bigBullet2Barrel']
 #var unlockedSkills = ['first',  'turret', 'barrel2', 'barrel3', 'barrel4']
 #var unlockedSkills = ['first',  'turret', '2direction', '3direction', '4direction']
 
@@ -41,6 +41,7 @@ var store = null
 var enemyHealthAdded = 0
 var timer = 600
 var numOfEnemies = 0
+var bossTime = false
 
 
 

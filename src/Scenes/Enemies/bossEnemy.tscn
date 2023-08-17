@@ -70,7 +70,7 @@ extents = Vector2( 84, 62 )
 extents = Vector2( 490.5, 151.5 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 739.5, 1151 )
+extents = Vector2( 453.503, 706.998 )
 
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 1039.99, 1546 )
@@ -78,8 +78,8 @@ extents = Vector2( 1039.99, 1546 )
 [node name="bossEnemy" type="KinematicBody2D" groups=["enemy"]]
 pause_mode = 1
 z_index = -1
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 3 )
 health = 10000
 experienceDroppedValue = 100
@@ -97,7 +97,6 @@ position = Vector2( 1, -126 )
 shape = SubResource( 8 )
 
 [node name="HurtBox" parent="." instance=ExtResource( 1 )]
-visible = false
 position = Vector2( 0, 21 )
 collision_layer = 4
 collision_mask = 4
@@ -199,11 +198,10 @@ texture = ExtResource( 6 )
 [node name="shootTimer" type="Timer" parent="."]
 
 [node name="enemySpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
 [connection signal="hurt" from="HurtBox2" to="." method="_on_HurtBox_hurt"]
-[connection signal="finished" from="DeathExplosionSound" to="." method="_on_AudioStreamPlayer_finished"]
 [connection signal="body_entered" from="retreatArea" to="." method="_on_retreatArea_body_entered"]
 [connection signal="body_exited" from="retreatArea" to="." method="_on_retreatArea_body_exited"]
 [connection signal="timeout" from="retreatArea/retreatTimer" to="." method="_on_retreatTimer_timeout"]

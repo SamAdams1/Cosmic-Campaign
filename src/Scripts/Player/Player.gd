@@ -5,7 +5,7 @@ onready var camera = $Camera2D
 onready var bossHealthBar = $GUILayer/GUI/bossHealthBar
 
 #upgradable stats
-var speed = Global.playerMovementSpeed
+onready var speed = Global.playerMovementSpeed
 var playerHealth = Global.playerHealth
 var boostCapacity = Global.boostCapacity
 var boostValue = Global.boostValue
@@ -119,6 +119,7 @@ func _physics_process(delta):
 		movement(delta)
 		shipLookDirectionMoving(delta)
 		autoAim()
+		healthBar.value = playerHealth
 		if !waitToFire:
 			directionalFire()
 			waitToFire = true
@@ -225,7 +226,7 @@ func _on_HurtBox_hurt(damage):
 		turretSprite.visible = false
 		toggleFire = false
 		turretSprite.toggleFire = false
-		speed = 0
+		Global.playerMovementSpeed = 0
 		deathSound.play()
 	elif playerHealth > 0:
 		spriteDamageFlicker(.2)
@@ -305,16 +306,17 @@ func setExpBar(setValue = 1, setMaxValue = 100):
 signal firstLevel
 
 func _on_levelUpSound_finished():
-	toggleFire = false
-	
-	if experienceLevel % 2 != 0 or experienceLevel == 1:
-		emit_signal("firstLevel", experienceLevel)
-		skillTree.visible = true
-	
-	statUpgrade.visible = true
-	shipMovingSound.volume_db = -100
-	boostSound.stop()
-	get_tree().paused = true
+	if !Global.bossTime:
+		toggleFire = false
+		
+		if experienceLevel % 2 != 0 or experienceLevel == 1:
+			emit_signal("firstLevel", experienceLevel)
+			skillTree.visible = true
+		
+		statUpgrade.visible = true
+		shipMovingSound.volume_db = -100
+		boostSound.stop()
+		get_tree().paused = true
 	calculateExperience(0)
 
 func upgradePlayer():
@@ -346,14 +348,17 @@ func updatePlayerSkills(target, category):
 
 func setStats():
 	speed = Global.playerMovementSpeed
-	healthBar.max_value = Global.playerHealth
-	healthBarUnder.max_value = Global.playerHealth
+	
 	boostValue = Global.boostValue
 	boostCapacity = Global.boostCapacity
 	boostBar.max_value = boostCapacity
 	boostAmount = boostCapacity
 	fireRate = Global.fireRate
 	bulletSpeed = Global.bulletSpeed
+	
+	
+	healthBar.max_value = Global.playerHealth
+	healthBarUnder.max_value = Global.playerHealth
 
 
 func changeShipColor(number):

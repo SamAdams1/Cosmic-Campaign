@@ -36,7 +36,8 @@ const ITEMS ={
 }
 
 onready var player = get_tree().current_scene.get_node('Player')
-onready var store = get_tree().current_scene.get_node('Store')
+onready var store = preload("res://Scenes/loot_drops/Store.tscn")
+onready var storeSpawnTimer = get_tree().current_scene.get_node('storeSpawnTimer')
 
 onready var playerWalletLabel = $walletAmount
 onready var playerMoney = player.money
@@ -106,5 +107,7 @@ func _on_leaveButton_pressed():
 		get_tree().paused = false
 		yield(get_tree().create_timer(1), "timeout")
 		Global.store.queue_free()
+		Global.store = null
+		storeSpawnTimer.start()
 	else:
 		get_tree().quit()
