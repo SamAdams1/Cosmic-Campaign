@@ -34,7 +34,24 @@ speed = 100
 [node name="enemyHolder" type="Node2D" parent="."]
 
 [node name="enemy_base" parent="enemyHolder" instance=ExtResource( 2 )]
+position = Vector2( 742, 709 )
 movementSpeed = 0
+health = 10
+
+[node name="enemy_base2" parent="enemyHolder" instance=ExtResource( 2 )]
+position = Vector2( 487, 706 )
+movementSpeed = 0
+health = 10
+
+[node name="enemy_base3" parent="enemyHolder" instance=ExtResource( 2 )]
+position = Vector2( 356, 705 )
+movementSpeed = 0
+health = 10
+
+[node name="enemy_base4" parent="enemyHolder" instance=ExtResource( 2 )]
+position = Vector2( 618, 708 )
+movementSpeed = 0
+health = 10
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )

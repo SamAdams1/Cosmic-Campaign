@@ -16,7 +16,7 @@ func _on_HurtBox_area_entered(area):
 			match HurtBoxType:
 				0: #cooldown
 					collision.call_deferred("set", "disabled", true)
-					disableTimer.start()
+					disableTimer.start() 
 				1: #HitOnce
 					pass
 				2: #DisableHitBox

@@ -1,6 +1,7 @@
 extends Node
 
 var node_creation_parent = null
+var reloadScene = false
 
 #autoAim
 var closeEnemies = []
@@ -24,6 +25,8 @@ var playerMovementSpeed = 300
 var playerHealth = 10
 var boostCapacity = 2
 var boostValue = 100
+
+
 
 #skills
 var unlockedSkills = ['first', ]

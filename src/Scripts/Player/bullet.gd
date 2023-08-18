@@ -5,7 +5,9 @@ onready var sound = $bulletHitSound
 onready var regBulletHit = preload("res://Audio/SFX/hit.wav")
 onready var explosiveBulletHit = preload("res://Audio/SFX/short-explosion.wav")
 onready var sprite = $Sprite
-onready var hitBox = $HitBox/CollisionShape2D
+onready var hitBoxCollisionShape = $HitBox/CollisionShape2D
+onready var hitBoxDisableTimer = $HitBox/DisableHitBoxTimer
+onready var hitBox = $HitBox
 onready var collision = $CollisionShape2D
 
 #onready var statUpgrade = preload("res://Scenes/Menus/StatUpgrade.tscn")
@@ -22,10 +24,19 @@ onready var homingBulletUnlocked = player.homingBulletUnlocked
 onready var explosiveBulletUnlocked = player.explosiveBulletUnlocked
 
 func _ready():
-	$HitBox.damage += bulletDamageMultiplier
+	hitBox.damage += bulletDamageMultiplier
 	if self.is_in_group('bigBullet'):
-		$HitBox.damage *= 2
+		hitBox.damage *= 2
+		
 
+	if Global.bulletSpeed <= 700:
+		hitBoxDisableTimer.wait_time = 0.3
+	elif Global.bulletSpeed == 900:
+		hitBoxDisableTimer.wait_time = 0.2
+	elif Global.bulletSpeed <= 1100:
+		hitBoxDisableTimer.wait_time = 0.15
+	else:
+		hitBoxDisableTimer.wait_time = 0.1
 	
 	if homingBulletUnlocked:
 		bulletHealth = 0
@@ -46,7 +57,7 @@ func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):
 		sprite.visible = false
 		if explosiveBulletUnlocked:
-			hitBox.scale = Vector2(5,5)
+			hitBoxCollisionShape.scale = Vector2(5,5)
 			var explosion_instance = explosion.instance()
 			explosion_instance.scale = Vector2(2,2)
 			explosion_instance.position = get_global_position()
@@ -55,7 +66,7 @@ func _on_bigBullet_body_entered(body):
 			sound.play()
 			
 			yield(get_tree().create_timer(0.1), "timeout")
-			hitBox.call_deferred("set", "disabled", true)
+			hitBoxCollisionShape.call_deferred("set", "disabled", true)
 			collision.call_deferred("set", "disabled", true)
 		else:
 			var explosion_instance = explosion.instance()
@@ -63,7 +74,7 @@ func _on_bigBullet_body_entered(body):
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = regBulletHit
 			sound.play()
-			hitBox.call_deferred("set", "disabled", true)
+			hitBoxCollisionShape.call_deferred("set", "disabled", true)
 			collision.call_deferred("set", "disabled", true)
 
 func _on_bulletPenetration_area_entered(area):
@@ -87,4 +98,30 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_bulletHitSound_finished():
-	queue_free()
+	if bulletHealth <= 0:
+		queue_free()
+
+
+func _on_HitBox_body_entered(body):
+	if body.is_in_group("enemy") and bulletHealth != 0:
+		hitBox.tempDisable()
+		if explosiveBulletUnlocked:
+			hitBoxCollisionShape.scale = Vector2(5,5)
+			sound.stream = explosiveBulletHit
+			sound.play()
+			yield(get_tree().create_timer(0.1), "timeout")
+			if is_instance_valid(self):
+				hitBoxCollisionShape.scale = Vector2(1,1)
+		else:
+			sound.stream = regBulletHit
+			sound.play()
+		
+
+
+
+
+
+
+
+
+

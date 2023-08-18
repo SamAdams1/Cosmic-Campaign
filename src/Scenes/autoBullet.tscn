@@ -61,6 +61,7 @@ texture = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_bigBullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 [connection signal="finished" from="bulletHitSound" to="." method="_on_bulletHitSound_finished"]
 [connection signal="area_entered" from="bulletPenetration" to="." method="_on_bulletPenetration_area_entered"]
 

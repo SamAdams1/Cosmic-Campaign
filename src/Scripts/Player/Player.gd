@@ -85,8 +85,9 @@ onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
-#	skillTree.points += 20
+#	skillTree.points += 1
 #	statUpgrade.statPoints += 30
+	print(speed, '|  ', playerHealth)
 	
 	controls.visible = true
 	get_tree().paused = true
@@ -226,7 +227,6 @@ func _on_HurtBox_hurt(damage):
 		turretSprite.visible = false
 		toggleFire = false
 		turretSprite.toggleFire = false
-		Global.playerMovementSpeed = 0
 		deathSound.play()
 	elif playerHealth > 0:
 		spriteDamageFlicker(.2)

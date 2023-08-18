@@ -11,7 +11,7 @@ onready var spawnPosition = $Path2D/PathFollow2D/Position2D
 onready var spawnPath = $Path2D/PathFollow2D
 onready var spawnTimer = $spawnTimer
 
-var bossSpawnedOnce = true
+var bossSpawnedOnce = false
 
 onready var timer = Global.timer
 
@@ -34,12 +34,12 @@ var difficultyChanges = {
 	},
 	330: {
 		'enemyHealth': 12,
-		'spawnTime': .7,
+		'spawnTime': .6,
 		'indexes': [2,3],
 	},
 	240: {
 		'enemyHealth': 20,
-		'spawnTime': .7,
+		'spawnTime': .6,
 		'indexes': [3,4],
 	},
 	150: {
@@ -69,9 +69,9 @@ func _physics_process(delta):
 		
 	if timer <= 0 and !bossSpawnedOnce:
 		var totalEnemies = topEnemies + rightEnemies + bottomEnemies + leftEnemies
+		spawnTimer.stop()
 		if totalEnemies == 0:
 			bossSpawnedOnce = true
-			spawnTimer.stop()
 			spawnBossEnemy()
 
 func _on_spawnTimer_timeout():
