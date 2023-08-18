@@ -17,9 +17,9 @@ onready var collision = $CollisionShape2D
 onready var sound = $collectedSound
 
 func _ready(): #sets color of xp gem
-	if experience < 5:
+	if experience <= 1:
 		return
-	elif experience < 25:
+	elif experience <= 2:
 		sprite.texture = spriteOrange
 	else:
 		sprite.texture = spriteRed

@@ -27,8 +27,9 @@ func _ready():
 	hitBox.damage += bulletDamageMultiplier
 	if self.is_in_group('bigBullet'):
 		hitBox.damage *= 2
-		
-
+	
+#	sound.volume_db = -20
+	
 	if Global.bulletSpeed <= 700:
 		hitBoxDisableTimer.wait_time = 0.3
 	elif Global.bulletSpeed == 900:
@@ -103,9 +104,9 @@ func _on_bulletHitSound_finished():
 
 
 func _on_HitBox_body_entered(body):
-	if body.is_in_group("enemy") and bulletHealth != 0:
+	if body.is_in_group("enemy") and bulletHealth != 0 and is_instance_valid(self):
 		hitBox.tempDisable()
-		if explosiveBulletUnlocked:
+		if explosiveBulletUnlocked and is_instance_valid(self):
 			hitBoxCollisionShape.scale = Vector2(5,5)
 			sound.stream = explosiveBulletHit
 			sound.play()

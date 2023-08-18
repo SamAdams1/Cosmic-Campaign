@@ -30,7 +30,7 @@ pause_mode = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 3 )
-movementSpeed = 175
+movementSpeed = 125
 coinDroppedValue = 5
 healthDroppedValue = 1
 

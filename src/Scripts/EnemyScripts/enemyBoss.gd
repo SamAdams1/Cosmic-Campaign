@@ -2,12 +2,15 @@ extends "res://Scripts/EnemyScripts/enemy_core.gd"
 
 export (Array, PackedScene) var enemies
 
+var cameraZoom = 3
+
 onready var retreatTimer = $retreatArea/retreatTimer
 
 onready var enemySpawnPoint1 = $spawnPoint1
 onready var enemySpawnPoint2 = $spawnPoint2
 onready var enemySpawnTimer = $enemySpawnTimer
 var itsSpawningTime = false
+var stopMoving = false
 
 onready var enemyHolder = get_tree().current_scene.get_node('enemyHolder')
 const bulletScene = preload("res://Scenes/Enemies/enemyBullet.tscn")
@@ -18,7 +21,7 @@ onready var origHealth = health
 
 var radius = 200
 var rotateSpeed = 2.4
-var fireRate = 0.4
+var fireRate = 0.3
 var numSpawnPoints = 5
 
 #var radius = 200
@@ -55,19 +58,23 @@ func _on_shootTimer_timeout():
 
 
 func _process(delta):
-	basic_movement_towards_player(delta)
+#	self.global_position.y = player.global_position.y -900
+	if !stopMoving:
+		basic_movement_towards_player(delta)
 	
-	var newRotation = rotater.rotation_degrees + rotateSpeed
-	rotater.rotation_degrees = fmod(newRotation, 360)
-	
-	if player.camera.offset.y > -500:
-		 player.camera.offset.y -=  10
-	if player.camera.zoom < Vector2(2.5,2.5):
+		var newRotation = rotater.rotation_degrees + rotateSpeed
+		rotater.rotation_degrees = fmod(newRotation, 360)
+		
+#	if player.camera.offset.y > -500:
+#		 player.camera.offset.y -=  10
+	if player.camera.zoom < Vector2(cameraZoom, cameraZoom):
 		player.camera.zoom += Vector2(delta,delta)
-	self.global_position.y = player.global_position.y -900
 	
 	checkHealth()
-
+	if isBossDead:
+		bossDead()
+		isBossDead = false
+		
 func spawnEnemy():
 	var enemyNumber = randEnemy()
 	var enemy1 = enemies[enemyNumber]
@@ -103,7 +110,6 @@ func _on_retreatTimer_timeout():
 	playerPush = 1
 
 
-
 var bossWasSpawning = false
 func _on_keepPlayerClose_body_exited(body):
 	if body.is_in_group('player'):
@@ -130,7 +136,7 @@ func checkHealth():
 			enemySpawnTimer.stop()
 			shootTimer.start()
 			rotateSpeed = 3
-			fireRate = 0.5
+			fireRate = 0.4
 			numSpawnPoints = 10
 			shootTimer.wait_time = fireRate
 	
@@ -143,12 +149,67 @@ func checkHealth():
 		shootTimer.stop()
 		enemySpawnTimer.stop()
 
+func bossDead():
+	retreatTimer.stop()
+	stopMoving = true
+	movementSpeed = 0
+	
+	$Sprite.visible = false
+	player.toggleFire = false
+	player.turret.toggleFire = false
+	
+	cameraZoom = 4
+	spawnWinXP()
 
+func spawnWinXP():
+	var xpAmount = 0
+	var loop = 0
+	while loop <= 150:
+		xpAmount += 1
+		
+		spawnXP(-6, xpAmount, 15)
+		spawnCoin(-10, xpAmount)
+		spawnXP(-15, xpAmount, 1)
+		
+		loop += 1
+		if xpAmount >= 2:
+			xpAmount = 0
+		yield(get_tree().create_timer(0.1), "timeout")
+		
+	winScreen()
 
+func spawnXP(xpSpeed, xpAmount, mult):
+	var newXPGem = xpGem.instance()
+	newXPGem.experience = xpAmount * mult
+	newXPGem.speed = xpSpeed
+	newXPGem.global_position = global_position
+	lootBase.call_deferred("add_child", newXPGem)
+	
+func spawnCoin(coinSpeed, coinAmount):
+	var newCoin = coin.instance()
+	newCoin.coinValue = coinAmount * 2
+	newCoin.speed = coinSpeed
+	newCoin.global_position = global_position
+	lootBase.call_deferred("add_child", newCoin)
 
+func addDeathExplosion():
+	var explosion_instance = explosion.instance()
+	explosion_instance.position = get_global_position()
+	explosion_instance.scale = Vector2(15,15)
+	explosion_instance.speed_scale = 1.5
+	get_tree().get_root().add_child(explosion_instance)
 
-
-
+func winScreen():
+	player.bossHealthBar.visible = false
+	self.visible = false
+	addDeathExplosion()
+	
+	Global.playerWon = true
+	yield(get_tree().create_timer(4), "timeout")
+	player._on_deathSound_finished()
+	
+	
+	
 
 
 

@@ -5,8 +5,6 @@
 
 [node name="enemy_asteroid_3" instance=ExtResource( 2 )]
 physics_interpolation_mode = 1
-movementSpeed = 200
-coinDroppedValue = 5
 healthDroppedValue = 5
 
 [node name="Sprite" parent="." index="0"]
@@ -19,9 +17,6 @@ position = Vector2( 0, 2 )
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( -0.25, -0.5 )
-
-[node name="inFront" parent="." index="8"]
-visible = true
 
 [editable path="HurtBox"]
 [editable path="HitBox"]

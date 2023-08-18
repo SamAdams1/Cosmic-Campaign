@@ -30,6 +30,7 @@ var knockback = Global.knockback
 var knockbackUnlocked = Global.knockbackUnlocked
 
 var playerPush = 1
+var isBossDead = false
 
 func _ready():
 	statUpgrade.connect('setKnockBack', self, 'setEnemyKnockback')
@@ -49,10 +50,16 @@ func _on_HurtBox_hurt(damage):
 		add_child(text)
 		
 		if health <= 0:
-			notDead = false
-			disableEnemyOnDead()
+			if self.name == 'bossEnemy':
+				isBossDead = true
+				disableEnemyOnDead()
+			else:
+				notDead = false
+				disableEnemyOnDead()
+			sprite.visible = false
 			sound.play()
 			Global.enemiesKilled += 1
+			
 			#explosion animation
 			var explosion_instance = explosion.instance()
 			explosion_instance.position = get_global_position()
@@ -68,7 +75,6 @@ func disableEnemyOnDead():
 	hitBox.call_deferred("set", "disabled", true)
 	hurtBox.call_deferred("set", "disabled", true)
 	movementSpeed = 0
-	sprite.visible = false
 
 
 func createLoot():
@@ -96,5 +102,6 @@ func setEnemyKnockback():
 	knockback = Global.knockback
 	knockbackUnlocked = true
 	Global.knockbackUnlocked = true
+
 
 

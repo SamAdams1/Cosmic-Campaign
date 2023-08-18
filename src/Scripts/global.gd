@@ -45,6 +45,7 @@ var enemyHealthAdded = 0
 var timer = 600
 var numOfEnemies = 0
 var bossTime = false
+var playerWon = false
 
 
 

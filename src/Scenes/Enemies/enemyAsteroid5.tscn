@@ -12,7 +12,9 @@ height = 130.0
 
 [node name="enemy_asteroid_5" instance=ExtResource( 2 )]
 physics_interpolation_mode = 1
+movementSpeed = 100
 health = 10
+experienceDroppedValue = 2
 coinDroppedValue = 10
 healthDroppedValue = 5
 

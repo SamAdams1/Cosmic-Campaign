@@ -5,8 +5,8 @@
 
 [node name="enemy_asteroid_6" instance=ExtResource( 2 )]
 physics_interpolation_mode = 1
-movementSpeed = 350
-health = -3
+movementSpeed = 225
+health = -4
 coinDroppedValue = 8
 healthDroppedValue = 5
 

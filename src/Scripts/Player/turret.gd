@@ -38,7 +38,8 @@ func _ready():
 		
 
 func _physics_process(_delta):
-	look_at(get_global_mouse_position())
+	if get_tree().paused == false:
+		look_at(get_global_mouse_position())
 
 func _input(_event):
 	while toggleFire and !waitToFire and currentTurret != null and get_tree().paused == false:

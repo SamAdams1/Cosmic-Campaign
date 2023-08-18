@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Utility/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Utility/HitBox.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Enemies/enemyAsteroid3.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Enemies/enemyAsteroid2.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Enemies/enemyAsteroid6.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sprites/Enemies/demonInUfoDEAD.png" type="Texture" id=13]
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 84.0536
@@ -81,15 +82,20 @@ z_index = -1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
-health = 7500
-experienceDroppedValue = 1000
-coinDroppedValue = 1000
+health = 100
+experienceDroppedValue = 2
+coinDroppedValue = 5
 enemies = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -9 )
 scale = Vector2( 0.868519, 0.707031 )
 texture = ExtResource( 5 )
+
+[node name="bossDead" type="Sprite" parent="."]
+position = Vector2( -1, -9 )
+scale = Vector2( 0.868519, 0.707031 )
+texture = ExtResource( 13 )
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 visible = false
@@ -182,9 +188,6 @@ position = Vector2( -3.62115e-06, 1.00032 )
 rotation = 1.5708
 shape = SubResource( 14 )
 
-[node name="retreatTimer" type="Timer" parent="keepPlayerClose"]
-wait_time = 2.0
-
 [node name="spawnPoint1" type="Position2D" parent="."]
 position = Vector2( -280, 65 )
 
@@ -207,7 +210,6 @@ wait_time = 3.0
 [connection signal="timeout" from="retreatArea/retreatTimer" to="." method="_on_retreatTimer_timeout"]
 [connection signal="body_entered" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_entered"]
 [connection signal="body_exited" from="keepPlayerClose" to="." method="_on_keepPlayerClose_body_exited"]
-[connection signal="timeout" from="keepPlayerClose/retreatTimer" to="." method="_on_retreatTimer_timeout"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]
 [connection signal="timeout" from="enemySpawnTimer" to="." method="_on_enemySpawnTimer_timeout"]
 

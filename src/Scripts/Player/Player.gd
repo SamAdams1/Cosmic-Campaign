@@ -52,7 +52,7 @@ var homingBulletUnlocked = false
 var explosiveBulletUnlocked = false
 
 #turret
-onready var turretSprite = $turret
+onready var turret = $turret
 
 
 #Directional Ship Shooting
@@ -85,7 +85,7 @@ onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
-#	skillTree.points += 1
+#	skillTree.points += 20
 #	statUpgrade.statPoints += 30
 	print(speed, '|  ', playerHealth)
 	
@@ -202,8 +202,15 @@ func calculateBoostBar(delta):
 		boostAmount += delta
 	boostBar.value = boostAmount
 
-
-
+var paused = false
+func _input(event):
+	if event.is_action_pressed('ui_cancel') and skillTree.visible == false and statUpgrade.visible == false and storeShopScreen.visible == false:
+		get_tree().paused = !paused
+		paused = !paused
+#		if get_tree().paused == true:
+#			camera.zoom = Vector2(10,10)
+#		else:
+#			camera.zoom = Vector2(2,2)
 
 func isShipMoving():
 	if ((Input.is_action_pressed("right") or Input.is_action_pressed("down") or Input.is_action_pressed("left") or Input.is_action_pressed("up")) and lookNotPressed):
@@ -224,9 +231,9 @@ func _on_HurtBox_hurt(damage):
 	if playerHealth == 0:
 		hurtBox.call_deferred("set", "disabled", true)
 		shipSprite.visible = false
-		turretSprite.visible = false
+		turret.visible = false
 		toggleFire = false
-		turretSprite.toggleFire = false
+		turret.toggleFire = false
 		deathSound.play()
 	elif playerHealth > 0:
 		spriteDamageFlicker(.2)
@@ -241,9 +248,9 @@ func _on_deathSound_finished():
 func spriteDamageFlicker(time):
 	takingDamage = true
 	shipSprite.visible = false
-	turretSprite.visible = false
+	turret.visible = false
 	yield(get_tree().create_timer(time), "timeout")
-	turretSprite.visible = true
+	turret.visible = true
 	shipSprite.visible = true
 	takingDamage = false
 

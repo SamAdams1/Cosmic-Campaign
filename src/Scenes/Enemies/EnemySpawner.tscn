@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Utility/enemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Enemies/enemyAsteroid4.tscn" type="PackedScene" id=2]
@@ -24,6 +24,9 @@ extents = Vector2( 805, 566.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 800.5, 562.25 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 2893, 1845 )
 
 [node name="EnemySpawner" type="Node2D"]
 pause_mode = 1
@@ -84,6 +87,14 @@ collision_mask = 0
 position = Vector2( -25.5, 1068.25 )
 shape = SubResource( 5 )
 
+[node name="despawnArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="despawnArea"]
+position = Vector2( 721, 513 )
+shape = SubResource( 6 )
+
 [connection signal="timeout" from="spawnTimer" to="." method="_on_spawnTimer_timeout"]
 [connection signal="body_entered" from="topSpawn" to="." method="_on_topSpawn_body_entered"]
 [connection signal="body_exited" from="topSpawn" to="." method="_on_topSpawn_body_exited"]
@@ -93,3 +104,4 @@ shape = SubResource( 5 )
 [connection signal="body_exited" from="bottomSpawn" to="." method="_on_bottomSpawn_body_exited"]
 [connection signal="body_entered" from="leftSpawn" to="." method="_on_leftSpawn_body_entered"]
 [connection signal="body_exited" from="leftSpawn" to="." method="_on_leftSpawn_body_exited"]
+[connection signal="body_exited" from="despawnArea" to="." method="_on_despawnArea_body_exited"]

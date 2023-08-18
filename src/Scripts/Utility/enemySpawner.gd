@@ -27,25 +27,45 @@ var difficultyChanges = {
 		'spawnTime': .8,
 		'indexes': [0, 1],
 	},
+	465: {
+		'enemyHealth': 4,
+		'spawnTime': .3,
+		'indexes': [1, 2],
+	},
 	420: {
 		'enemyHealth': 8,
 		'spawnTime': .7,
 		'indexes': [1, 2],
 	},
+	375: {
+		'enemyHealth': 8,
+		'spawnTime': .3,
+		'indexes': [2,3],
+	},
 	330: {
 		'enemyHealth': 12,
-		'spawnTime': .6,
-		'indexes': [2,3],
+		'spawnTime': .8,
+		'indexes': [0,1,2,3],
 	},
 	240: {
 		'enemyHealth': 20,
 		'spawnTime': .6,
 		'indexes': [3,4],
 	},
+	195: {
+		'enemyHealth': 15,
+		'spawnTime': .3,
+		'indexes': [4],
+	},
 	150: {
 		'enemyHealth': 15,
 		'spawnTime': .4,
 		'indexes': [4,5],
+	},
+	105: {
+		'enemyHealth': 13,
+		'spawnTime': .3,
+		'indexes': [5],
 	},
 	75: {
 		'enemyHealth': 5,
@@ -172,3 +192,15 @@ func _on_bottomSpawn_body_entered(body):
 func _on_bottomSpawn_body_exited(body):
 	if body.is_in_group("enemy"):
 		bottomEnemies -= 1
+
+
+func _on_despawnArea_body_exited(body):
+	if body.is_in_group("enemy") and body.notDead:
+		Global.numOfEnemies -= 1
+		body.queue_free()
+
+
+
+
+
+
