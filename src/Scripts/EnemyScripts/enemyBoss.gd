@@ -30,7 +30,7 @@ var numSpawnPoints = 5
 #var numSpawnPoints = 10
 
 func _ready():
-#	health *= Global.bulletDamageMultiplier
+	killNearbyEnemies()
 	Global.enemyHealthAdded = 20
 	
 	Global.bossTime = true
@@ -133,10 +133,11 @@ func checkHealth():
 	
 	elif health > origHealth * .25:
 		if shootTimer.is_stopped():
+			killNearbyEnemies()
 			enemySpawnTimer.stop()
 			shootTimer.start()
-			rotateSpeed = 3
-			fireRate = 0.4
+			rotateSpeed = 3.3
+			fireRate = 0.2
 			numSpawnPoints = 10
 			shootTimer.wait_time = fireRate
 	
@@ -148,6 +149,7 @@ func checkHealth():
 	else:
 		shootTimer.stop()
 		enemySpawnTimer.stop()
+		killNearbyEnemies()
 
 func bossDead():
 	retreatTimer.stop()
@@ -157,6 +159,7 @@ func bossDead():
 	$Sprite.visible = false
 	player.toggleFire = false
 	player.turret.toggleFire = false
+	player.bossDead = true
 	
 	cameraZoom = 4
 	spawnWinXP()
@@ -208,9 +211,10 @@ func winScreen():
 	yield(get_tree().create_timer(4), "timeout")
 	player._on_deathSound_finished()
 	
-	
-	
-
+func killNearbyEnemies():
+	for enemy in enemyHolder.get_children():
+		if enemy != self:
+			enemy._on_HurtBox_hurt(enemy.health)
 
 
 

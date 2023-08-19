@@ -17,7 +17,7 @@ func _ready():
 
 func dropStartingXP():
 	var xp = xpGem.instance()
-	xp.experience = 1
+	xp.experience = 50
 	xp.global_position = player.global_position
 	lootBase.call_deferred("add_child", xp)
 

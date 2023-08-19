@@ -85,8 +85,8 @@ onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
-#	skillTree.points += 20
-#	statUpgrade.statPoints += 30
+	skillTree.points += 20
+	statUpgrade.statPoints += 30
 	print(speed, '|  ', playerHealth)
 	
 	controls.visible = true
@@ -430,9 +430,9 @@ func findNearestEnemy():
 			Global.nearestEnemy = enemy
 #			print(nearestDistance, '||', nearestEnemy)
 
-
+var bossDead = false
 func autoAim():
-	if autoAimUnlocked:
+	if autoAimUnlocked and !bossDead:
 		findNearestEnemy()
 		if nearestEnemy != null and !autoBulletWaitTimer and playerHealth > 0:
 			autoBulletWaitTimer = true

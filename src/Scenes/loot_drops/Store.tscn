@@ -12,6 +12,7 @@ extents = Vector2( 163.307, 123.238 )
 
 [node name="Store" type="Sprite"]
 scale = Vector2( 0.771552, 0.584235 )
+z_index = -1
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

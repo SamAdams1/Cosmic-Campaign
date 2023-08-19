@@ -82,7 +82,7 @@ z_index = -1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
-health = 100
+health = 3000
 experienceDroppedValue = 2
 coinDroppedValue = 5
 enemies = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ) ]
@@ -112,7 +112,7 @@ position = Vector2( -1, 15.5 )
 shape = SubResource( 2 )
 
 [node name="DisableTimer" parent="HurtBox" index="1"]
-wait_time = 0.39
+wait_time = 0.1
 
 [node name="HurtBox2" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -130,9 +130,7 @@ wait_time = 0.39
 [node name="HitBox" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( -1, 17 )
-collision_layer = 2
-collision_mask = 2
-damage = 4
+damage = 100
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 3 )
@@ -172,6 +170,7 @@ volume_db = -15.0
 bus = "SFX"
 
 [node name="retreatArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="retreatArea"]
 position = Vector2( 2.99994, -14.5001 )
@@ -182,6 +181,7 @@ shape = SubResource( 15 )
 wait_time = 2.0
 
 [node name="keepPlayerClose" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="keepPlayerClose"]
 position = Vector2( -3.62115e-06, 1.00032 )

@@ -18,7 +18,7 @@ size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.00392157, 0.282353, 0.0156863, 1 )
+bg_color = Color( 0.282353, 0.0352941, 0.00392157, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10

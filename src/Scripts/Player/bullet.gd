@@ -29,8 +29,9 @@ func _ready():
 		hitBox.damage *= 2
 	
 #	sound.volume_db = -20
-	
-	if Global.bulletSpeed <= 700:
+	if homingBulletUnlocked:
+		hitBoxDisableTimer.wait_time = 10
+	elif Global.bulletSpeed <= 700:
 		hitBoxDisableTimer.wait_time = 0.3
 	elif Global.bulletSpeed == 900:
 		hitBoxDisableTimer.wait_time = 0.2
@@ -52,7 +53,9 @@ func _physics_process(delta):
 		look_at(target.global_position)
 	if target and !is_instance_valid(target):
 		queue_free()
-
+	if $Sprite.visible == false:
+		yield(get_tree().create_timer(0.3), "timeout")
+		queue_free()
 
 func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):
@@ -99,8 +102,11 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_bulletHitSound_finished():
-	if bulletHealth <= 0:
+	if explosiveBulletUnlocked and is_instance_valid(self):
+		hitBoxCollisionShape.scale = Vector2(1,1)
+	if self.visible == false:
 		queue_free()
+#	print(bulletHealth)
 
 
 func _on_HitBox_body_entered(body):
@@ -110,13 +116,14 @@ func _on_HitBox_body_entered(body):
 			hitBoxCollisionShape.scale = Vector2(5,5)
 			sound.stream = explosiveBulletHit
 			sound.play()
-			yield(get_tree().create_timer(0.1), "timeout")
-			if is_instance_valid(self):
-				hitBoxCollisionShape.scale = Vector2(1,1)
 		else:
 			sound.stream = regBulletHit
 			sound.play()
 		
+func _on_despawnTimer_timeout():
+	self.queue_free()
+
+
 
 
 

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var speed = 250
+var speed = 300
 var explosion = preload("res://Scenes/Explosion.tscn")
 
 func _physics_process(delta):

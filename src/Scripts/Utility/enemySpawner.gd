@@ -64,12 +64,12 @@ var difficultyChanges = {
 	},
 	105: {
 		'enemyHealth': 13,
-		'spawnTime': .3,
+		'spawnTime': .2,
 		'indexes': [5],
 	},
 	75: {
 		'enemyHealth': 5,
-		'spawnTime': .4,
+		'spawnTime': .3,
 		'indexes': [1,2,3,4,5],
 	},
 }
@@ -88,11 +88,9 @@ func _physics_process(delta):
 		changeDifficulty()
 		
 	if timer <= 0 and !bossSpawnedOnce:
-		var totalEnemies = topEnemies + rightEnemies + bottomEnemies + leftEnemies
 		spawnTimer.stop()
-		if totalEnemies == 0:
-			bossSpawnedOnce = true
-			spawnBossEnemy()
+		bossSpawnedOnce = true
+		spawnBossEnemy()
 
 func _on_spawnTimer_timeout():
 	if !Global.bossTime:
