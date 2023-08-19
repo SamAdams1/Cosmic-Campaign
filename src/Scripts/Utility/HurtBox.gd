@@ -8,7 +8,7 @@ onready var disableTimer = $DisableTimer
 
 signal hurt(damage)
 
-
+var hitOnceArray = []
 
 func _on_HurtBox_area_entered(area):
 	if area.is_in_group("attack"):
@@ -19,13 +19,16 @@ func _on_HurtBox_area_entered(area):
 					disableTimer.start() 
 				1: #HitOnce
 					pass
+				
 				2: #DisableHitBox
 					if area.has_method("tempDisable"):
 						area.tempDisable()
+			
 			var damage = area.damage
 			emit_signal("hurt", damage)
-				
-				
 
 func _on_DisableTimer_timeout():
 	collision.call_deferred("set", "disabled", false)
+
+
+

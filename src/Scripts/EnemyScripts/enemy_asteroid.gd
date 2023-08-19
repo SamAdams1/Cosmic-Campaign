@@ -33,7 +33,6 @@ func _on_stun_timer_timeout():
 	stun = false
 	
 func _on_HurtBox_area_entered(area):
-	
 	if area.is_in_group("attack") and knockbackUnlocked and !Global.bossTime:
 		velocity = -velocity * knockback
 		stun = true

@@ -8,7 +8,7 @@ onready var credits = $Credits
 
 func _ready():
 	credits.visible = false
-#	music.play()
+	music.play()
 
 func _on_NewGameButton_pressed():
 	get_tree().change_scene(mainGameScene.resource_path)

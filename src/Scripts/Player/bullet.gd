@@ -51,11 +51,11 @@ func _physics_process(delta):
 		direction = target.global_position - global_position
 		direction = direction.normalized()
 		look_at(target.global_position)
-	if target and !is_instance_valid(target):
-		queue_free()
-	if $Sprite.visible == false:
-		yield(get_tree().create_timer(0.3), "timeout")
-		queue_free()
+#	if target and !is_instance_valid(target):
+#		queue_free()
+#	if self.visible == false:
+#		hitBox.call_deferred("set", "disabled", true)
+#		hitBoxCollisionShape.call_deferred("set", "disabled", true)
 
 func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):
@@ -67,7 +67,8 @@ func _on_bigBullet_body_entered(body):
 			explosion_instance.position = get_global_position()
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = explosiveBulletHit
-			sound.play()
+			if sound.is_stopped():
+				sound.play()
 			
 			yield(get_tree().create_timer(0.1), "timeout")
 			hitBoxCollisionShape.call_deferred("set", "disabled", true)
@@ -84,29 +85,26 @@ func _on_bigBullet_body_entered(body):
 func _on_bulletPenetration_area_entered(area):
 	if area.is_in_group("enemy"):
 		bulletHealth -= 1
-		if bulletHealth <= 0:
+		if bulletHealth == 0:
 			self.set_collision_mask_bit(2, true)
+#		if bulletHealth <= -1:
+#			hitBox.call_deferred("set", "disabled", true)
+#			hitBoxCollisionShape.call_deferred("set", "disabled", true)
 
 func _on_homingArea_body_entered(body):
 	if body.is_in_group('enemy') and homingBulletUnlocked:
 		target = body
-#
-#func upgradeBullets():
-#	if target == 'tracerBullet':
-#		homingBulletUnlocked = true
-#	elif target == 'explosiveBullet':
-#		explosiveBulletUnlocked = true
+
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 
 func _on_bulletHitSound_finished():
+	if bulletHealth < 0:
+		queue_free()
 	if explosiveBulletUnlocked and is_instance_valid(self):
 		hitBoxCollisionShape.scale = Vector2(1,1)
-	if self.visible == false:
-		queue_free()
-#	print(bulletHealth)
 
 
 func _on_HitBox_body_entered(body):
@@ -115,10 +113,14 @@ func _on_HitBox_body_entered(body):
 		if explosiveBulletUnlocked and is_instance_valid(self):
 			hitBoxCollisionShape.scale = Vector2(5,5)
 			sound.stream = explosiveBulletHit
-			sound.play()
+			if !sound.playing:
+				sound.play()
 		else:
 			sound.stream = regBulletHit
-			sound.play()
+			if !sound.playing:
+				sound.play()
+	if bulletHealth < 0:
+		sound.play()
 		
 func _on_despawnTimer_timeout():
 	self.queue_free()

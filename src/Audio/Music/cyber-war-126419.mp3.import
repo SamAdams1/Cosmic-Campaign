@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cyber-war-126419.mp3-83f984e9aa384162e4938748a88acf48.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/cyber-war-126419.mp3"
+dest_files=[ "res://.import/cyber-war-126419.mp3-83f984e9aa384162e4938748a88acf48.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

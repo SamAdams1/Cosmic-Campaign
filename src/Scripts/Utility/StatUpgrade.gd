@@ -59,7 +59,7 @@ func _on_button_pressed():
 			return
 		warningLabel.visible = false
 		increaseBar()
-		upgradeStat()
+	
 		if statPoints == 0:
 			yield(get_tree().create_timer(0.25), "timeout")
 			player.upgradePlayer()
@@ -69,6 +69,7 @@ func increaseBar():
 	if statPoints > 0 and progressBar.value < progressBar.max_value:
 		progressBar.value += 1
 		statPoints -= 1
+		upgradeStat()
 
 
 func upgradeStat():

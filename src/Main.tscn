@@ -1,14 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Enemies/enemyAsteroid4.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemies/enemyAsteroid2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Objects/Moon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Utility/Background.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Enemies/EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Arena.gd" type="Script" id=7]
 [ext_resource path="res://Audio/Music/let-the-games-begin-21858.wav" type="AudioStream" id=8]
-[ext_resource path="res://Scenes/Enemies/enemyAsteroid3.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Objects/coin.tscn" type="PackedScene" id=16]
 
 [node name="Main" type="Node2D"]
@@ -35,21 +32,13 @@ speed = 100
 
 [node name="enemyHolder" type="Node2D" parent="."]
 
-[node name="enemy_asteroid_2" parent="enemyHolder" instance=ExtResource( 3 )]
-position = Vector2( 1084, 228 )
-
-[node name="enemy_asteroid_3" parent="enemyHolder" instance=ExtResource( 9 )]
-position = Vector2( 1150, 353 )
-
-[node name="enemy_asteroid_4" parent="enemyHolder" instance=ExtResource( 2 )]
-position = Vector2( 1256, 169 )
-
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -15.0
+volume_db = -20.0
 bus = "Music"
 
 [node name="storeSpawnTimer" type="Timer" parent="."]
 wait_time = 120.0
 
+[connection signal="finished" from="music" to="." method="_on_music_finished"]
 [connection signal="timeout" from="storeSpawnTimer" to="." method="_on_storeSpawnTimer_timeout"]

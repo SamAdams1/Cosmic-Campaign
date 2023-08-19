@@ -32,6 +32,7 @@ var knockbackUnlocked = Global.knockbackUnlocked
 var playerPush = 1
 var isBossDead = false
 
+
 func _ready():
 	statUpgrade.connect('setKnockBack', self, 'setEnemyKnockback')
 	health += Global.enemyHealthAdded

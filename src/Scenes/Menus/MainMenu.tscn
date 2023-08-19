@@ -188,7 +188,7 @@ text = "Credits"
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -10.0
+volume_db = -20.0
 bus = "Music"
 
 [node name="Credits" type="ColorRect" parent="."]
@@ -235,7 +235,7 @@ margin_bottom = 470.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 11 )
-text = "Music from Alexandr Zhelanov, and Defekt Machine."
+text = "Music from Alexandr Zhelanov, Alexi Action, Pixabay, and Defekt Machine."
 align = 1
 valign = 1
 autowrap = true

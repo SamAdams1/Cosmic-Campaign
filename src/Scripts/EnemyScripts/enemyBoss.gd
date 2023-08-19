@@ -31,7 +31,7 @@ var numSpawnPoints = 5
 
 func _ready():
 	killNearbyEnemies()
-	Global.enemyHealthAdded = 20
+	Global.enemyHealthAdded = 25
 	
 	Global.bossTime = true
 	movementSpeed = Global.playerMovementSpeed / 2
@@ -76,14 +76,17 @@ func _process(delta):
 		isBossDead = false
 		
 func spawnEnemy():
-	var enemyNumber = randEnemy()
-	var enemy1 = enemies[enemyNumber]
-	var enemy2 = enemies[enemyNumber]
+	var enemyNumber1 = randEnemy()
+	var enemyNumber2 = randEnemy()
+	var enemy1 = enemies[enemyNumber1]
+	var enemy2 = enemies[enemyNumber2]
 	var enemyInstance = enemy1.instance()
+	enemyInstance.speed += 25
 	enemyInstance.global_position = enemySpawnPoint1.global_position
 	enemyHolder.add_child(enemyInstance)
 	
 	enemyInstance = enemy2.instance()
+	enemyInstance.speed += 25
 	enemyInstance.global_position = enemySpawnPoint2.global_position
 	enemyHolder.add_child(enemyInstance)
 
