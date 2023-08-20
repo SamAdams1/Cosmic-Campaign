@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Utility/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Utility/HitBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/EnemyScripts/enemyBoss.gd" type="Script" id=3]
-[ext_resource path="res://Audio/SFX/ArcadeExplosion.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/terria death sound (1).wav" type="AudioStream" id=4]
 [ext_resource path="res://Sprites/Enemies/demon in ufo.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/skull.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Enemies/enemyAsteroid1.tscn" type="PackedScene" id=7]
@@ -47,7 +47,6 @@ coinDroppedValue = 5
 enemies = [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( -1, -9 )
 scale = Vector2( 0.868519, 0.707031 )
 texture = ExtResource( 5 )
@@ -104,7 +103,7 @@ shape = SubResource( 6 )
 
 [node name="DeathExplosionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -15.0
+volume_db = -5.0
 bus = "SFX"
 
 [node name="retreatArea" type="Area2D" parent="."]

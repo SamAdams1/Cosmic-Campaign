@@ -34,7 +34,7 @@ speed = 100
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -20.0
+volume_db = -30.0
 bus = "Music"
 
 [node name="storeSpawnTimer" type="Timer" parent="."]

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/cyber-war-126419.mp3-83f984e9aa384162e4938748a88acf4
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -237,10 +237,10 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="movementSpeed" type="Sprite" parent="."]
+[node name="playerMovementSpeed" type="Sprite" parent="."]
 position = Vector2( -3, 30 )
 
-[node name="TextureProgress" type="TextureProgress" parent="movementSpeed"]
+[node name="TextureProgress" type="TextureProgress" parent="playerMovementSpeed"]
 anchor_left = 0.261078
 anchor_top = -0.731438
 anchor_right = 3.26111
@@ -260,7 +260,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="playerMovementSpeed" type="Button" parent="movementSpeed"]
+[node name="playerMovementSpeed" type="Button" parent="playerMovementSpeed"]
 anchor_left = -0.00332642
 anchor_top = -0.0039978
 anchor_right = 6.99667
@@ -279,7 +279,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="title" type="Label" parent="movementSpeed"]
+[node name="title" type="Label" parent="playerMovementSpeed"]
 anchor_left = -9.5
 anchor_top = -0.357666
 anchor_right = 8.5
@@ -296,7 +296,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="plus" type="Label" parent="movementSpeed"]
+[node name="plus" type="Label" parent="playerMovementSpeed"]
 anchor_left = -0.00220751
 anchor_top = -0.00182482
 anchor_right = -0.00220751
@@ -386,10 +386,10 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="bulletPenetration" type="Sprite" parent="."]
+[node name="bulletHealth" type="Sprite" parent="."]
 position = Vector2( -3, 130 )
 
-[node name="TextureProgress" type="TextureProgress" parent="bulletPenetration"]
+[node name="TextureProgress" type="TextureProgress" parent="bulletHealth"]
 anchor_left = 0.261078
 anchor_top = -0.731438
 anchor_right = 3.26111
@@ -409,7 +409,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="bulletHealth" type="Button" parent="bulletPenetration"]
+[node name="bulletHealth" type="Button" parent="bulletHealth"]
 anchor_left = -0.00332642
 anchor_top = -0.0039978
 anchor_right = 6.99667
@@ -428,7 +428,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="title" type="Label" parent="bulletPenetration"]
+[node name="title" type="Label" parent="bulletHealth"]
 anchor_left = -9.5
 anchor_top = -0.357666
 anchor_right = 8.5
@@ -445,7 +445,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="plus" type="Label" parent="bulletPenetration"]
+[node name="plus" type="Label" parent="bulletHealth"]
 anchor_left = -0.00220751
 anchor_top = -0.00182482
 anchor_right = -0.00220751
@@ -686,10 +686,10 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="boostSpeed" type="Sprite" parent="."]
+[node name="boostValue" type="Sprite" parent="."]
 position = Vector2( -3, 330 )
 
-[node name="TextureProgress" type="TextureProgress" parent="boostSpeed"]
+[node name="TextureProgress" type="TextureProgress" parent="boostValue"]
 anchor_left = 0.261078
 anchor_top = -0.731438
 anchor_right = 3.26111
@@ -709,7 +709,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="boostValue" type="Button" parent="boostSpeed"]
+[node name="boostValue" type="Button" parent="boostValue"]
 anchor_left = -0.00332642
 anchor_top = -0.0039978
 anchor_right = 6.99667
@@ -728,7 +728,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="title" type="Label" parent="boostSpeed"]
+[node name="title" type="Label" parent="boostValue"]
 anchor_left = -9.5
 anchor_top = -0.357666
 anchor_right = 8.5
@@ -745,7 +745,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="plus" type="Label" parent="boostSpeed"]
+[node name="plus" type="Label" parent="boostValue"]
 anchor_left = -0.00220751
 anchor_top = -0.00182482
 anchor_right = -0.00220751
@@ -872,12 +872,12 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="maxHealth/maxHealth" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="movementSpeed/playerMovementSpeed" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="playerMovementSpeed/playerMovementSpeed" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="fireRate/fireRate" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="bulletPenetration/bulletHealth" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="bulletHealth/bulletHealth" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bulletSpeed/bulletSpeed" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bulletDamage/bulletDamage" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="knockback/knockback" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="boostSpeed/boostValue" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="boostValue/boostValue" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="boostCapacity/boostCapacity" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="boostCapacity/exitButton" to="." method="_on_exitButton_pressed"]

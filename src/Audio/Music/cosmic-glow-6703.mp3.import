@@ -11,5 +11,5 @@ dest_files=[ "res://.import/cosmic-glow-6703.mp3-3872abd31c95b8c028bcebae358bf11
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

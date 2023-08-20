@@ -53,9 +53,9 @@ func _physics_process(delta):
 		look_at(target.global_position)
 #	if target and !is_instance_valid(target):
 #		queue_free()
-#	if self.visible == false:
-#		hitBox.call_deferred("set", "disabled", true)
-#		hitBoxCollisionShape.call_deferred("set", "disabled", true)
+	if self.visible == false and !sound.playing:
+		hitBox.call_deferred("set", "disabled", true)
+		hitBoxCollisionShape.call_deferred("set", "disabled", true)
 
 func _on_bigBullet_body_entered(body):
 	if body.is_in_group("enemy"):

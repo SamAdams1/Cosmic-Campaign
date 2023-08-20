@@ -53,12 +53,14 @@ func _on_HurtBox_hurt(damage):
 		if health <= 0:
 			if self.name == 'bossEnemy':
 				isBossDead = true
+				notDead = false
 				disableEnemyOnDead()
 			else:
 				notDead = false
 				disableEnemyOnDead()
 			sprite.visible = false
-			sound.play()
+			if !sound.playing:
+				sound.play()
 			Global.enemiesKilled += 1
 			
 			#explosion animation

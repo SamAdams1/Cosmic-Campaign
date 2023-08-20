@@ -22,7 +22,7 @@ var knockback = 0
 var knockbackUnlocked = false
 
 var playerMovementSpeed = 300
-var playerHealth = 10
+var playerHealth = 1
 var boostCapacity = 2
 var boostValue = 100
 
@@ -42,7 +42,7 @@ var store = null
 
 #enemies
 var enemyHealthAdded = 0
-var timer = 600
+var timer = 1
 var numOfEnemies = 0
 var bossTime = false
 var playerWon = false
@@ -50,8 +50,8 @@ var playerWon = false
 
 
 
-func instance_node(node, location, parent):
-	var node_instance = node.instance()
-	parent.add_child(node_instance)
-	node_instance.global_position = location
-	return node_instance
+#func instance_node(node, location, parent):
+#	var node_instance = node.instance()
+#	parent.add_child(node_instance)
+#	node_instance.global_position = location
+#	return node_instance

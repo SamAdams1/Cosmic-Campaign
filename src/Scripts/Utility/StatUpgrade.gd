@@ -122,3 +122,43 @@ func tracerBulletandBoost(item):
 func _on_exitButton_pressed():
 	yield(get_tree().create_timer(0.25), "timeout")
 	player.upgradePlayer()
+
+func playerDeath():
+	for i in VALUES:
+		var bar = get_node(i + '/' +  'TextureProgress')
+		var barValue = bar.value
+		if barValue > 0:
+			value = VALUES[i] * barValue * -1
+			target = i
+			upgradeStat()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

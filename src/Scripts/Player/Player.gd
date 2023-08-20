@@ -77,17 +77,17 @@ var autoAimLevel = 0
 
 
 #loot
+onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 onready var moneyLabel = $GUILayer/GUI/moneyLabel
 var money = 0
-onready var storeShopScreen = $GUILayer/GUI/StoreShopScreen
 
 
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
-#	skillTree.points += 20
-#	statUpgrade.statPoints += 30
-#	print(speed, '|  ', playerHealth)
+	skillTree.points += 20
+	statUpgrade.statPoints += 30
+#	print(Global.fireRate, Global.bulletSpeed, Global.bulletHealth, Global.bulletDamageMultiplier, Global.knockback, Global.playerMovementSpeed, Global.playerHealth, Global.boostCapacity, Global.boostValue)
 	
 	controls.visible = true
 	get_tree().paused = true
@@ -119,14 +119,10 @@ func _physics_process(delta):
 	if get_tree().paused == false:
 		movement(delta)
 		shipLookDirectionMoving(delta)
+		directionalFire()
 		autoAim()
+		
 		healthBar.value = playerHealth
-		if !waitToFire:
-			directionalFire()
-			waitToFire = true
-			yield(get_tree().create_timer(fireRate), "timeout")
-			waitToFire = false
-			
 
 func movement(_delta):
 	var input_velocity = Vector2.ZERO
@@ -234,6 +230,7 @@ func _on_HurtBox_hurt(damage):
 		turret.visible = false
 		toggleFire = false
 		turret.toggleFire = false
+		speed = 0
 		deathSound.play()
 	elif playerHealth > 0:
 		spriteDamageFlicker(.2)
@@ -241,8 +238,7 @@ func _on_HurtBox_hurt(damage):
 func _on_deathSound_finished():
 	Global.finishLevel = experienceLevel
 	Global.finishTime = $GUILayer/GUI/timerLabel.text
-	speed = 0
-	yield(get_tree().create_timer(1), "timeout")
+	statUpgrade.playerDeath()
 	get_tree().change_scene("res://Scenes/Menus/GameOverScreen.tscn")
 
 func spriteDamageFlicker(time):
@@ -378,7 +374,7 @@ func changeShipColor(number):
 
 
 
-
+			
 #ShipShooting
 func directionalFire():
 	if directionalShootUnlocked and toggleFire and !waitToFire:
@@ -401,6 +397,10 @@ func directionalFire():
 			bullet_instance.apply_impulse(Vector2(), Vector2(bulletSpeed + shipMovingMultiplier, 0).rotated(shipSprite.rotation))
 			get_tree().get_root().call_deferred("add_child", bullet_instance)
 			counter += 1
+			
+		waitToFire = true
+		yield(get_tree().create_timer(fireRate), "timeout")
+		waitToFire = false
 
 func directionalShootDetermine(counter, limit):
 	if limit == 1:

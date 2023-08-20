@@ -81,12 +81,12 @@ func spawnEnemy():
 	var enemy1 = enemies[enemyNumber1]
 	var enemy2 = enemies[enemyNumber2]
 	var enemyInstance = enemy1.instance()
-	enemyInstance.speed += 25
+	enemyInstance.movementSpeed += 25
 	enemyInstance.global_position = enemySpawnPoint1.global_position
 	enemyHolder.add_child(enemyInstance)
 	
 	enemyInstance = enemy2.instance()
-	enemyInstance.speed += 25
+	enemyInstance.movementSpeed += 25
 	enemyInstance.global_position = enemySpawnPoint2.global_position
 	enemyHolder.add_child(enemyInstance)
 
@@ -181,7 +181,7 @@ func spawnWinXP():
 		if xpAmount >= 2:
 			xpAmount = 0
 		yield(get_tree().create_timer(0.1), "timeout")
-		
+	
 	winScreen()
 
 func spawnXP(xpSpeed, xpAmount, mult):
