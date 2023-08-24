@@ -30,17 +30,9 @@ func _ready():
 	if homingBulletUnlocked:
 		hitBox.damage *= 2
 	
-#	sound.volume_db = -20
-	if homingBulletUnlocked:
-		hitBoxDisableTimer.wait_time = 10
-	elif Global.bulletSpeed <= 700:
-		hitBoxDisableTimer.wait_time = 0.3
-	elif Global.bulletSpeed == 900:
-		hitBoxDisableTimer.wait_time = 0.2
-	elif Global.bulletSpeed <= 1100:
-		hitBoxDisableTimer.wait_time = 0.15
-	else:
-		hitBoxDisableTimer.wait_time = 0.1
+	setHitboxWaitTime()
+	setBulletVolume()
+	
 	
 	if homingBulletUnlocked:
 		bulletHealth = 0
@@ -128,9 +120,23 @@ func _on_HitBox_body_entered(body):
 func _on_despawnTimer_timeout():
 	self.queue_free()
 
+func setHitboxWaitTime():
+	if homingBulletUnlocked:
+		hitBoxDisableTimer.wait_time = 10
+	elif Global.bulletSpeed <= 700:
+		hitBoxDisableTimer.wait_time = 0.3
+	elif Global.bulletSpeed <= 900:
+		hitBoxDisableTimer.wait_time = 0.2
+	elif Global.bulletSpeed <= 1100:
+		hitBoxDisableTimer.wait_time = 0.15
+	else:
+		hitBoxDisableTimer.wait_time = 0.1
 
-
-
+func setBulletVolume():
+	if bulletHealth <= 3:
+		sound.volume_db = -20
+	else:
+		sound.volume_db = -40
 
 
 

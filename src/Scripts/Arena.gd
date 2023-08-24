@@ -49,7 +49,7 @@ onready var song5 = preload("res://Audio/Music/broken-Defekt_Maschine.wav")
 var songNumber = 1
 func _on_music_finished():
 	songNumber += 1
-	if songNumber <= 6:
+	if songNumber >= 6:
 		songNumber = 0
 		
 	match songNumber:

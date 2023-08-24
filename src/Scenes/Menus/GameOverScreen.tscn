@@ -91,13 +91,13 @@ custom_constants/separation = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 924.0
-margin_bottom = 87.0
+margin_bottom = 135.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NewGameButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
 margin_right = 924.0
-margin_bottom = 87.0
+margin_bottom = 135.0
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -108,15 +108,15 @@ custom_styles/normal = SubResource( 5 )
 text = "New Game"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 95.0
+margin_top = 143.0
 margin_right = 924.0
-margin_bottom = 182.0
+margin_bottom = 278.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="mainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
 margin_right = 924.0
-margin_bottom = 87.0
+margin_bottom = 135.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
@@ -126,6 +126,7 @@ custom_styles/normal = SubResource( 5 )
 text = "Main Menu"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
 margin_top = 190.0
 margin_right = 924.0
 margin_bottom = 278.0
