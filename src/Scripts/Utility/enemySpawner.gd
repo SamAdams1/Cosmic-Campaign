@@ -70,11 +70,12 @@ var difficultyChanges = {
 	75: {
 		'enemyHealth': 5,
 		'spawnTime': .3,
-		'indexes': [1,2,3,4,5],
+		'indexes': [0,1,2,3,4,5],
 	},
 }
 
 var time = timer
+var maxEnemies = 300
 
 func _ready():
 	spawnTimer.wait_time = 1
@@ -93,10 +94,9 @@ func _physics_process(delta):
 		spawnBossEnemy()
 
 func _on_spawnTimer_timeout():
-	if !Global.bossTime:
+	if !Global.bossTime and totalNumEnemies() <= maxEnemies:
 		spawnEnemy()
-		Global.numOfEnemies += 1
-	#	print(Global.numOfEnemies)
+#		print(totalNumEnemies())
 
 func spawnEnemy():
 	for enemy in enemySpawnList():
@@ -196,6 +196,9 @@ func _on_despawnArea_body_exited(body):
 	if body.is_in_group("enemy") and body.notDead:
 		Global.numOfEnemies -= 1
 		body.queue_free()
+		
+func totalNumEnemies():
+	return topEnemies + rightEnemies + bottomEnemies + leftEnemies
 
 
 

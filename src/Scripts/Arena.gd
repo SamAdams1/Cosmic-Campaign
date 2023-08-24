@@ -40,23 +40,29 @@ func _on_storeSpawnTimer_timeout():
 func reloadScene():
 	get_tree().reload_current_scene()
 
+onready var song1 = preload("res://Audio/Music/let-the-games-begin-21858.wav")
+onready var song2 = preload("res://Audio/Music/cyber-war-126419.mp3")
+onready var song3 = preload("res://Audio/Music/music-alexandr-zhelanov.wav")
+onready var song4 = preload("res://Audio/Music/cosmic-glow-6703.mp3")
+onready var song5 = preload("res://Audio/Music/broken-Defekt_Maschine.wav")
+
 var songNumber = 1
 func _on_music_finished():
 	songNumber += 1
 	if songNumber <= 6:
-		songNumber = 1
-	
+		songNumber = 0
+		
 	match songNumber:
 		1:
-			music.stream = "res://Audio/Music/let-the-games-begin-21858.wav"
+			music.stream = song1
 		2:
-			music.stream = "res://Audio/Music/cyber-war-126419.mp3"
+			music.stream = song2
 		3:
-			music.stream = "res://Audio/Music/music-alexandr-zhelanov.wav"
+			music.stream = song3
 		4:
-			music.stream = "res://Audio/Music/cosmic-glow-6703.mp3"
+			music.stream = song4
 		5:
-			music.stream = "res://Audio/Music/broken-Defekt_Maschine.wav"
+			music.stream = song5
 	
 	yield(get_tree().create_timer(5), "timeout")
 	music.play()

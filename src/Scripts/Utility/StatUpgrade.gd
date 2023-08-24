@@ -114,8 +114,8 @@ func tracerBulletandBoost(item):
 		boostUnlocked = true
 	elif item == 'tracerBullet':
 		tracerBulletUnlocked = true
-		statPoints += $bulletPenetration/TextureProgress.value
-		$bulletPenetration/TextureProgress.value = 0
+		statPoints += $bulletHealth/TextureProgress.value
+		$bulletHealth/TextureProgress.value = 0
 
 
 

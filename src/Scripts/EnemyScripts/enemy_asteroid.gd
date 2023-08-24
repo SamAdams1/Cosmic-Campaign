@@ -44,11 +44,8 @@ func _on_enemyPush_area_entered(area):
 	if area.is_in_group('enemyPush') and movementSpeed > area.get_parent().get_parent().movementSpeed:
 		area.get_parent().get_parent().movementSpeed += pushValue
 		enemyPushList.append(area)
-#		print('speed', ' | ', enemyPushList)
-
 
 func _on_enemyPush_area_exited(area):
 	if enemyPushList.has(area):
 		area.get_parent().get_parent().movementSpeed -= pushValue
 		enemyPushList.erase(area)
-#		print('leave', ' | ')

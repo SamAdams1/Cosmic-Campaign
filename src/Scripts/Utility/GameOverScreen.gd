@@ -25,6 +25,12 @@ func _ready():
 	Global.unlockedSkills = ['first', ]
 	Global.selectedButton = null
 	scoreLabel.text = 'Level: '+str(Global.finishLevel)+'\nAliens Killed: '+str(Global.enemiesKilled)+'\nCoins Collected: '+str(Global.coinsCollected) + '\nTime:'+Global.finishTime
+	
+	Global.bossTime = false
+	Global.playerWon = false
+	Global.enemiesKilled = 0 
+	Global.finishLevel = 0
+	Global.coinsCollected = 0
 
 func _on_NewGameButton_pressed():
 	Global.reloadScene = true

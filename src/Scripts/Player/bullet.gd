@@ -27,6 +27,8 @@ func _ready():
 	hitBox.damage += bulletDamageMultiplier
 	if self.is_in_group('bigBullet'):
 		hitBox.damage *= 2
+	if homingBulletUnlocked:
+		hitBox.damage *= 2
 	
 #	sound.volume_db = -20
 	if homingBulletUnlocked:
@@ -67,10 +69,10 @@ func _on_bigBullet_body_entered(body):
 			explosion_instance.position = get_global_position()
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = explosiveBulletHit
-			if sound.is_stopped():
+			if !sound.playing:
 				sound.play()
 			
-			yield(get_tree().create_timer(0.1), "timeout")
+#			yield(get_tree().create_timer(0.1), "timeout")
 			hitBoxCollisionShape.call_deferred("set", "disabled", true)
 			collision.call_deferred("set", "disabled", true)
 		else:
@@ -78,9 +80,10 @@ func _on_bigBullet_body_entered(body):
 			explosion_instance.position = get_global_position()
 			get_tree().get_root().add_child(explosion_instance)
 			sound.stream = regBulletHit
-			sound.play()
-			hitBoxCollisionShape.call_deferred("set", "disabled", true)
-			collision.call_deferred("set", "disabled", true)
+			if !sound.playing:
+				sound.play()
+		hitBoxCollisionShape.call_deferred("set", "disabled", true)
+		collision.call_deferred("set", "disabled", true)
 
 func _on_bulletPenetration_area_entered(area):
 	if area.is_in_group("enemy"):

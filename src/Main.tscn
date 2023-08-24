@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Objects/Moon.tscn" type="PackedScene" id=4]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/Enemies/EnemySpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Arena.gd" type="Script" id=7]
 [ext_resource path="res://Audio/Music/let-the-games-begin-21858.wav" type="AudioStream" id=8]
-[ext_resource path="res://Scenes/Objects/coin.tscn" type="PackedScene" id=16]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 7 )
@@ -25,10 +24,6 @@ scale = Vector2( 2.42857, 2.19402 )
 [node name="Background" parent="." instance=ExtResource( 5 )]
 
 [node name="lootBase" type="Node2D" parent="." groups=["loot"]]
-
-[node name="coin" parent="lootBase" instance=ExtResource( 16 )]
-position = Vector2( 1180, 758 )
-speed = 100
 
 [node name="enemyHolder" type="Node2D" parent="."]
 

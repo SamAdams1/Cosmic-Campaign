@@ -276,9 +276,9 @@ func changeLabels():
 	title.text = str(SKILLS[target]['title'])
 	description.text = str(SKILLS[target]['desc'])
 	if str(SKILLS[target]['cost']) == '1':
-		costLabel.text = str(SKILLS[target]['cost']) + " Unlock Point"
+		costLabel.text = 'Cost: ' + str(SKILLS[target]['cost']) + " Unlock Point"
 	else:
-		costLabel.text = str(SKILLS[target]['cost']) + " Unlock Points"
+		costLabel.text = 'Cost: ' + str(SKILLS[target]['cost']) + " Unlock Points"
 
 func updatePoints():
 	pointLabel.text = 'x' + str(points)
@@ -321,7 +321,6 @@ func checkTotalCost():
 	for prereq in SKILLS[target]["prerequiste"]:
 		if !Global.unlockedSkills.has(prereq):
 			cost += SKILLS[prereq]["cost"]
-#	print(cost)
 	return cost <= points
 
 func stopStatUpgrades():

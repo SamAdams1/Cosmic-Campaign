@@ -85,8 +85,8 @@ var money = 0
 func _ready():
 #	var master_sound = AudioServer.get_bus_index("Master")
 #	AudioServer.set_bus_mute(master_sound, true)
-	skillTree.points += 20
-	statUpgrade.statPoints += 30
+#	skillTree.points += 20
+#	statUpgrade.statPoints += 50
 #	print(Global.fireRate, Global.bulletSpeed, Global.bulletHealth, Global.bulletDamageMultiplier, Global.knockback, Global.playerMovementSpeed, Global.playerHealth, Global.boostCapacity, Global.boostValue)
 	
 	controls.visible = true
