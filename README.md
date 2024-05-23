@@ -2,7 +2,7 @@
 A space-shooter roguelike where you try to survive ten minutes of endless enemies and face the final boss. The longer you survive the more you can upgrade your ship and take on stronger foes!
 
 # Play in Browser! No need to download!
-https://sams-studio.itch.io/cosmic-crusade
+https://sams-studio.itch.io/cosmic-campaign
 
 # Take on Aliens!
 ![Screenshot 2023-08-24 104754](https://github.com/SoccerSam16/Roguelike/assets/119465691/a7630a91-13f1-408c-9761-858053c2179f)
