@@ -1,5 +1,5 @@
-# Cosmic Crusade
-A spaceshooter roguelike where you try to survive ten minutes of endless enemies and face the final boss. The longer you survive the more you can upgrade your ship and take on stronger foes!
+# Cosmic Campaign
+A space-shooter roguelike where you try to survive ten minutes of endless enemies and face the final boss. The longer you survive the more you can upgrade your ship and take on stronger foes!
 
 # Play in Browser! No need to download!
 https://sams-studio.itch.io/cosmic-crusade
